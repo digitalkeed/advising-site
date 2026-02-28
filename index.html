@@ -163,6 +163,10 @@
     }
 
     /* ═══════ PARTNERS ═══════ */
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
     .partners {
       background: var(--dark);
       padding: 0 60px;
@@ -185,18 +189,29 @@
       background: rgba(196,176,138,0.15);
       flex-shrink: 0;
     }
-    .partners-logos {
-      display: flex; align-items: center;
-      gap: 52px; flex: 1;
+    .partners-track-wrap {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
     }
-    .partners-logos img {
-      height: 28px; width: auto;
-      max-width: 150px;
+    .partners-track {
+      display: flex; align-items: center;
+      gap: 72px;
+      width: max-content;
+      animation: marquee 18s linear infinite;
+    }
+    .partners-track:hover { animation-play-state: paused; }
+    .partners-track img {
+      height: 30px; width: auto;
+      max-width: 160px;
       object-fit: contain; object-position: center;
       filter: brightness(0) invert(1) opacity(0.38);
       transition: filter 0.35s;
+      flex-shrink: 0;
     }
-    .partners-logos img:hover {
+    .partners-track img:hover {
       filter: brightness(0) invert(0.92) sepia(0.45) saturate(0.6) hue-rotate(8deg) opacity(0.9);
     }
 
@@ -860,7 +875,7 @@
       .hero-left { padding: 56px 28px 52px; order: 2; }
       .hero-right { height: 50vh; min-height: 340px; order: 1; }
       .partners { padding: 0 28px; height: auto; min-height: 72px; }
-      .partners-logos { gap: 28px; overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
+      .partners-track { gap: 48px; animation-duration: 14s; }
       .stats { flex-wrap: wrap; }
       .stat { flex: 1 1 50%; padding: 36px 28px; }
       .stat:nth-child(odd) { border-right: 1px solid var(--border); }
@@ -899,8 +914,8 @@
       .hero-h1-script { font-size: 52px; }
       .hero-body { font-size: 15px; }
       .partners { height: auto; padding: 16px 24px; gap: 14px; flex-wrap: wrap; }
-      .partners-logos { gap: 24px; overflow-x: auto; }
-      .partners-logos img { height: 20px; width: auto; max-width: 100px; }
+      .partners-track { gap: 36px; animation-duration: 12s; }
+      .partners-track img { height: 22px; max-width: 110px; }
       .stat { flex: 1 1 100%; border-right: none !important; }
       .stat-num { font-size: 36px; }
       .philosophy-img { min-height: 280px; }
@@ -976,12 +991,20 @@
   <div class="partners">
     <span class="partners-label">Our Partners</span>
     <div class="partners-div"></div>
-    <div class="partners-logos">
-      <img src="images/logo-netflix.svg" alt="Netflix" />
-      <img src="images/logo-polymarket.svg" alt="Polymarket" />
-      <img src="images/logo-binance.svg" alt="Binance" />
-      <img src="images/logo-visa.svg" alt="Visa" />
-      <img src="images/logo-okx.svg" alt="OKX" />
+    <div class="partners-track-wrap">
+      <div class="partners-track">
+        <img src="images/logo-netflix.svg" alt="Netflix" />
+        <img src="images/logo-polymarket.svg" alt="Polymarket" />
+        <img src="images/logo-binance.svg" alt="Binance" />
+        <img src="images/logo-visa.svg" alt="Visa" />
+        <img src="images/logo-okx.svg" alt="OKX" />
+        <!-- duplicate set for seamless loop -->
+        <img src="images/logo-netflix.svg" alt="Netflix" aria-hidden="true" />
+        <img src="images/logo-polymarket.svg" alt="Polymarket" aria-hidden="true" />
+        <img src="images/logo-binance.svg" alt="Binance" aria-hidden="true" />
+        <img src="images/logo-visa.svg" alt="Visa" aria-hidden="true" />
+        <img src="images/logo-okx.svg" alt="OKX" aria-hidden="true" />
+      </div>
     </div>
   </div>
 
