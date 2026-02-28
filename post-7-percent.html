@@ -3,30 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The 7% Model: Why We Only Get Paid When You Win — Advising.com Blog</title>
+  <title>The 7% Philosophy: Alignment Over Fees — Advising.com</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{--bg:#f4edd8;--bg-alt:#ede3c8;--dark:#3a2410;--rust:#8c3a1a;--body-color:#7a5c32;--gold:#a8905c;--gold-border:#c4b08a;--cream:#f4edd8;--border:rgba(196,176,138,0.35);}
+    :root{
+      --bg:#f4edd8;--bg-alt:#ede3c8;--dark:#3a2410;--rust:#8c3a1a;
+      --body-color:#7a5c32;--gold:#a8905c;--gold-border:#c4b08a;
+      --cream:#f4edd8;--border:rgba(196,176,138,0.35);
+    }
     html{scroll-behavior:smooth;}
     body{background:var(--bg);font-family:'EB Garamond',serif;color:var(--dark);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-    .nav{position:fixed;top:0;left:0;right:0;z-index:500;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(244,237,216,0.95);backdrop-filter:blur(16px);}
+
+    .nav{position:fixed;top:0;left:0;right:0;z-index:500;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(244,237,216,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
     .nav-logo{font-family:'Jost',sans-serif;font-size:15px;font-weight:400;letter-spacing:4.5px;text-transform:uppercase;color:var(--dark);text-decoration:none;}
     .nav-list{display:flex;gap:40px;list-style:none;}
     .nav-list a{font-family:'Jost',sans-serif;font-size:9.9px;font-weight:400;letter-spacing:2.8px;text-transform:uppercase;color:var(--dark);text-decoration:none;opacity:0.65;transition:opacity 0.2s;}
     .nav-list a:hover,.nav-list a.active{opacity:1;}
-    .nav-hamburger{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;}
-    .post-hero{padding-top:70px;padding-bottom:48px;border-bottom:1px solid var(--border);}
-    .post-hero-inner{max-width:720px;margin:0 auto;padding:0 60px;}
-    .post-date{font-family:'Jost',sans-serif;font-size:9px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-    .post-title{font-family:'Libre Baskerville',serif;font-size:clamp(28px,3.2vw,44px);font-weight:700;font-style:italic;letter-spacing:-0.025em;color:var(--dark);line-height:1.15;}
-    .post-body{max-width:680px;margin:0 auto;padding:56px 60px 80px;}
-    .post-body p{font-size:19px;line-height:1.85;color:var(--body-color);margin-bottom:20px;}
+    .nav-hamburger{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;}
+    .nav-hamburger span,.nav-hamburger::before,.nav-hamburger::after{display:block;height:2px;background:var(--dark);position:absolute;left:0;right:0;}
+    .nav-hamburger span{top:9px;}.nav-hamburger::before{content:'';top:0;}.nav-hamburger::after{content:'';bottom:0;}
+
+    .post-hero{
+      padding-top:70px;height:100vh;min-height:600px;
+      display:flex;flex-direction:column;justify-content:flex-end;
+      position:relative;overflow:hidden;
+      background:linear-gradient(165deg,#1c0e06 0%,#2a1508 25%,#3a2410 55%,#4d3018 100%);
+    }
+    .post-hero::before{
+      content:'';position:absolute;inset:0;
+      background-image:
+        repeating-linear-gradient(90deg,transparent 0,transparent 80px,rgba(255,255,255,0.018) 80px,rgba(255,255,255,0.018) 81px),
+        repeating-linear-gradient(0deg,transparent 0,transparent 80px,rgba(255,255,255,0.012) 80px,rgba(255,255,255,0.012) 81px);
+      pointer-events:none;
+    }
+    .post-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(26,12,4,0.6) 100%);pointer-events:none;}
+    .post-hero-script{
+      position:absolute;right:-20px;top:50%;transform:translateY(-50%);
+      font-family:'Pinyon Script',cursive;font-size:clamp(180px,18vw,280px);
+      color:rgba(196,176,138,0.05);line-height:1;pointer-events:none;user-select:none;
+    }
+    .post-hero-inner{position:relative;z-index:1;padding:0 80px 72px;max-width:1100px;width:100%;}
+    .post-back{font-family:'Jost',sans-serif;font-size:9.9px;font-weight:500;letter-spacing:2.2px;text-transform:uppercase;color:rgba(201,185,138,0.75);text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;transition:color 0.2s;}
+    .post-back:hover{color:#c9b98a;}
+    .post-eyebrow{font-family:'Jost',sans-serif;font-size:9.3px;font-weight:400;letter-spacing:2.6px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .post-title{font-family:'Libre Baskerville',serif;font-size:clamp(32px,3.8vw,56px);font-weight:700;font-style:italic;letter-spacing:-0.03em;color:rgba(244,237,216,0.96);line-height:1.08;max-width:800px;margin-bottom:28px;}
+    .post-meta{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding-top:20px;border-top:1px solid rgba(196,176,138,0.18);}
+    .post-meta-sep{width:1px;height:16px;background:rgba(196,176,138,0.25);}
+    .post-date{font-family:'Jost',sans-serif;font-size:9px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;color:#c9b98a;}
+    .post-author{font-family:'EB Garamond',serif;font-size:16px;font-style:italic;color:rgba(244,237,216,0.6);}
+    .post-read-time{font-family:'Jost',sans-serif;font-size:9px;font-weight:400;letter-spacing:1.8px;text-transform:uppercase;color:rgba(201,185,138,0.45);}
+
+    .post-body{max-width:720px;margin:0 auto;padding:72px 60px 0;}
+    .post-lead{font-family:'EB Garamond',serif;font-size:22px;font-style:italic;font-weight:500;line-height:1.72;color:var(--dark);padding-left:28px;border-left:3px solid var(--rust);margin-bottom:40px;}
+    .post-body p{font-size:18px;line-height:1.9;color:var(--body-color);margin-bottom:24px;}
     .post-body p:last-child{margin-bottom:0;}
-    .post-back{font-family:'Jost',sans-serif;font-size:9.9px;font-weight:500;letter-spacing:2.2px;text-transform:uppercase;color:var(--rust);text-decoration:none;display:inline-block;margin-bottom:32px;transition:color 0.2s;}
-    .post-back:hover{color:var(--dark);}
+    .post-h2{font-family:'Libre Baskerville',serif;font-size:26px;font-weight:700;font-style:italic;letter-spacing:-0.02em;color:var(--dark);margin:48px 0 18px;}
+    .pull-quote{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
+    .pull-quote::before{content:'\201C';position:absolute;top:-20px;left:24px;font-family:'Libre Baskerville',serif;font-size:180px;line-height:1;color:rgba(196,176,138,0.1);pointer-events:none;}
+    .pull-quote-text{font-family:'Pinyon Script',cursive;font-size:clamp(24px,2.2vw,32px);color:var(--rust);line-height:1.55;position:relative;z-index:1;}
+    .pull-quote-attr{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--body-color);opacity:0.6;display:block;margin-top:14px;position:relative;z-index:1;}
+    .post-divider{width:44px;height:1.5px;background:var(--gold-border);margin:40px 0;}
+
+    .author-band{background:var(--dark);padding:56px 60px;margin-top:80px;}
+    .author-band-inner{max-width:720px;margin:0 auto;display:grid;grid-template-columns:88px 1fr;gap:32px;align-items:start;}
+    .author-avatar{width:88px;height:88px;border-radius:50%;flex-shrink:0;overflow:hidden;background:linear-gradient(160deg,#c9b98a 0%,#8c6830 100%);display:flex;align-items:center;justify-content:center;}
+    .author-initials{font-family:'Libre Baskerville',serif;font-size:24px;font-style:italic;font-weight:700;color:var(--dark);}
+    .author-label{font-family:'Jost',sans-serif;font-size:9px;font-weight:400;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+    .author-name{font-family:'Libre Baskerville',serif;font-size:24px;font-weight:700;font-style:italic;letter-spacing:-0.02em;color:rgba(244,237,216,0.92);margin-bottom:4px;}
+    .author-role{font-family:'Jost',sans-serif;font-size:9px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:rgba(201,185,138,0.5);margin-bottom:16px;}
+    .author-text{font-family:'EB Garamond',serif;font-size:16px;line-height:1.75;color:rgba(244,237,216,0.45);margin-bottom:18px;}
+    .author-link{font-family:'Jost',sans-serif;font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--rust);text-decoration:none;transition:color 0.2s;}
+    .author-link:hover{color:#c9b98a;}
+
     footer{background:#1c0e06;padding:44px 60px 28px;}
     .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:80px;padding-bottom:32px;border-bottom:1px solid rgba(196,176,138,0.12);margin-bottom:20px;}
     .footer-brand{font-family:'Jost',sans-serif;font-size:9.3px;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:#c9b98a;margin-bottom:4px;}
@@ -46,8 +97,24 @@
     .footer-credit a:hover{color:#c9b98a;}
     .footer-legal a{color:inherit;text-decoration:none;}
     .footer-legal a:hover{color:#c9b98a;}
-    @media(max-width:960px){.nav{padding:0 28px;}.nav-list{display:none;}.nav-hamburger{display:block;}.post-hero-inner,.post-body{padding-left:28px;padding-right:28px;}.post-body{padding-top:40px;padding-bottom:60px;}.footer-top{grid-template-columns:1fr;}}
-    @media(max-width:540px){.post-hero-inner,.post-body{padding-left:24px;padding-right:24px;}.post-body p{font-size:17px;}}
+
+    @media(max-width:960px){
+      .nav{padding:0 28px;}.nav-list{display:none;}.nav-hamburger{display:block;}
+      .post-hero-inner{padding:0 28px 52px;}
+      .post-body{padding:52px 28px 0;}
+      .author-band{padding:44px 28px;}
+      .author-band-inner{grid-template-columns:72px 1fr;gap:20px;}
+      .footer-top{grid-template-columns:1fr;gap:36px;}
+    }
+    @media(max-width:540px){
+      .post-hero-inner{padding:0 24px 44px;}
+      .post-title{font-size:28px;}
+      .post-lead{font-size:19px;padding-left:20px;}
+      .post-body{padding:44px 24px 0;}
+      .post-body p{font-size:17px;}
+      .author-band{padding:36px 24px;}
+      .author-band-inner{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
@@ -64,18 +131,69 @@
   </nav>
 
   <header class="post-hero">
+    <span class="post-hero-script" aria-hidden="true">7%.</span>
     <div class="post-hero-inner">
       <a href="blog.html" class="post-back">← Back to Blog</a>
-      <p class="post-date">November 2025</p>
-      <h1 class="post-title">The 7% Model: Why We Only Get Paid When You Win</h1>
+      <p class="post-eyebrow">Philosophy &amp; Model</p>
+      <h1 class="post-title">The 7% Philosophy:<br>Alignment Over Fees</h1>
+      <div class="post-meta">
+        <span class="post-date">October 2025</span>
+        <span class="post-meta-sep"></span>
+        <span class="post-author">By Mickey Hardy &amp; Brian Evans</span>
+        <span class="post-meta-sep"></span>
+        <span class="post-read-time">6 min read</span>
+      </div>
     </div>
   </header>
 
-  <article class="post-body">
-    <p>Alignment over fees. Our dilty structure ties our success to yours — and changes how advisory actually works. Most advisors charge by the hour or on retainer. That creates an incentive to stay in the room longer, not to get you to the right outcome faster. We do it differently.</p>
-    <p>The 7% dilty model means we participate in your success. We don't get paid for activity; we get paid when you win. That means our incentives are aligned with yours from day one. We want you to close the round, land the deal, and build the company — because that's when we succeed too.</p>
-    <p>This structure isn't just a business model. It's a philosophy. We only take on clients we believe in, and we only get rewarded when we deliver. No retainers, no hourly billing, no misaligned incentives. Just a shared stake in the outcome.</p>
+  <article>
+    <div class="post-body">
+      <p class="post-lead">Most advisory relationships are misaligned by design. The advisor gets paid for time; the founder pays for outcomes. These are not the same thing, and the gap between them is where most advisory value disappears. We built a different model.</p>
+
+      <p>When we founded Advising.com, we made a deliberate decision not to charge retainers. No monthly fees. No hourly rates. No upfront charges that separate our economic interest from yours. Instead, we take 7% equity dilution on the engagements we accept — a single, transparent number that aligns us completely with the outcome of your company.</p>
+
+      <p>This is not a novel idea. The best venture capitalists have always operated this way: they win when founders win, and they don't get paid for showing up. What is less common is an advisory firm with the discipline to apply the same structure to its practice — to turn down cash and only accept the kind of compensation that forces you to actually deliver.</p>
+
+      <div class="post-divider"></div>
+      <h2 class="post-h2">Why 7%?</h2>
+
+      <p>The number is intentional. It is meaningful enough that we have real skin in the game — 7% of a company that succeeds is worth protecting, worth fighting for, worth building carefully. It is not so large that it creates governance complexity or dilution problems that affect your ability to raise future rounds cleanly.</p>
+
+      <p>We arrived at 7% through experience. We have seen advisory arrangements at 1% that produced nothing — too small to matter, too forgettable to motivate. We have seen arrangements at 15-20% that created cap table problems and conflicted interests down the road. 7% sits in the zone where the math works for everyone: it is significant to us, manageable for you, and clean enough to survive a Series A data room without explanation.</p>
+
+      <div class="pull-quote">
+        <span class="pull-quote-text">"If we don't win when you win, we have no business advising you. The 7% dilty fee is a contract we make with ourselves, not just with you."</span>
+        <span class="pull-quote-attr">— Mickey Hardy &amp; Brian Evans, Co-Founders</span>
+      </div>
+
+      <h2 class="post-h2">What Alignment Actually Changes</h2>
+
+      <p>When your advisor owns equity, the conversation changes. They stop giving you the advice that is easy to give and start giving you the advice that is hard to hear. They stop protecting the relationship and start protecting the company. They push back when they should, because they have something at stake when you make a mistake.</p>
+
+      <p>This is the dynamic we aim to create in every engagement. We have declined work from founders we liked because we didn't believe strongly enough in the business to take equity. We have pushed clients to pivot, to fire people, to walk away from deals that looked good but felt wrong — because our interests were fully aligned with the right outcome, not the comfortable one.</p>
+
+      <p>The founders who have benefited most from our model are the ones who wanted a true partner, not a consultant. They were not looking for someone to validate their existing plan — they were looking for someone who had the credibility to challenge it, and the incentive to be right.</p>
+
+      <h2 class="post-h2">The Implications for How We Work</h2>
+
+      <p>Because we are selective — we cannot take equity in companies we cannot help — our intake process is rigorous. We do not take every inbound. We take the ones where we can see the specific path from where the company is now to where it needs to be, and where we are confident our particular expertise can accelerate that journey.</p>
+
+      <p>This makes us a poor fit for founders looking for broad, generalist advisory support. We are a good fit for founders at specific inflection points — a pre-launch Go-to-Market sprint, a fundraising process, a governance restructure, an international expansion. We come in, we do the work, and we take equity as our compensation for the value created. That is the deal, and it is the only deal we make.</p>
+    </div>
   </article>
+
+  <div class="author-band">
+    <div class="author-band-inner">
+      <div class="author-avatar"><span class="author-initials">AC</span></div>
+      <div>
+        <p class="author-label">The Authors</p>
+        <p class="author-name">Mickey Hardy &amp; Brian Evans</p>
+        <p class="author-role">Co-Founders, Advising.com</p>
+        <p class="author-text">Together, Mickey and Brian represent over two decades of operating experience across Web3, venture capital, eCommerce, and digital marketing. They built Advising.com around the conviction that the best advisory relationships are built on alignment, not invoices.</p>
+        <a href="about.html" class="author-link">Meet the founders →</a>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-top">

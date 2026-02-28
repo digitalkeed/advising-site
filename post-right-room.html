@@ -3,30 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why the Right Room Still Beats the Best Algorithm — Advising.com Blog</title>
+  <title>Why the Right Room Still Beats the Best Algorithm — Advising.com</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Jost:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-    :root{--bg:#f4edd8;--bg-alt:#ede3c8;--dark:#3a2410;--rust:#8c3a1a;--body-color:#7a5c32;--gold:#a8905c;--gold-border:#c4b08a;--cream:#f4edd8;--border:rgba(196,176,138,0.35);}
+    :root{
+      --bg:#f4edd8;--bg-alt:#ede3c8;--dark:#3a2410;--rust:#8c3a1a;
+      --body-color:#7a5c32;--gold:#a8905c;--gold-border:#c4b08a;
+      --cream:#f4edd8;--border:rgba(196,176,138,0.35);
+    }
     html{scroll-behavior:smooth;}
     body{background:var(--bg);font-family:'EB Garamond',serif;color:var(--dark);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
-    .nav{position:fixed;top:0;left:0;right:0;z-index:500;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(244,237,216,0.95);backdrop-filter:blur(16px);}
+
+    .nav{position:fixed;top:0;left:0;right:0;z-index:500;height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(244,237,216,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);}
     .nav-logo{font-family:'Jost',sans-serif;font-size:15px;font-weight:400;letter-spacing:4.5px;text-transform:uppercase;color:var(--dark);text-decoration:none;}
     .nav-list{display:flex;gap:40px;list-style:none;}
     .nav-list a{font-family:'Jost',sans-serif;font-size:9.9px;font-weight:400;letter-spacing:2.8px;text-transform:uppercase;color:var(--dark);text-decoration:none;opacity:0.65;transition:opacity 0.2s;}
     .nav-list a:hover,.nav-list a.active{opacity:1;}
-    .nav-hamburger{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;}
-    .post-hero{padding-top:70px;padding-bottom:48px;border-bottom:1px solid var(--border);}
-    .post-hero-inner{max-width:720px;margin:0 auto;padding:0 60px;}
-    .post-date{font-family:'Jost',sans-serif;font-size:9px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-    .post-title{font-family:'Libre Baskerville',serif;font-size:clamp(28px,3.2vw,44px);font-weight:700;font-style:italic;letter-spacing:-0.025em;color:var(--dark);line-height:1.15;}
-    .post-body{max-width:680px;margin:0 auto;padding:56px 60px 80px;}
-    .post-body p{font-size:19px;line-height:1.85;color:var(--body-color);margin-bottom:20px;}
+    .nav-hamburger{display:none;background:none;border:none;cursor:pointer;width:28px;height:20px;position:relative;}
+    .nav-hamburger span,.nav-hamburger::before,.nav-hamburger::after{display:block;height:2px;background:var(--dark);position:absolute;left:0;right:0;}
+    .nav-hamburger span{top:9px;}.nav-hamburger::before{content:'';top:0;}.nav-hamburger::after{content:'';bottom:0;}
+
+    .post-hero{
+      padding-top:70px;height:100vh;min-height:600px;
+      display:flex;flex-direction:column;justify-content:flex-end;
+      position:relative;overflow:hidden;
+      background:linear-gradient(165deg,#1c0e06 0%,#2a1508 25%,#3a2410 55%,#4d3018 100%);
+    }
+    .post-hero::before{
+      content:'';position:absolute;inset:0;
+      background-image:
+        repeating-linear-gradient(90deg,transparent 0,transparent 80px,rgba(255,255,255,0.018) 80px,rgba(255,255,255,0.018) 81px),
+        repeating-linear-gradient(0deg,transparent 0,transparent 80px,rgba(255,255,255,0.012) 80px,rgba(255,255,255,0.012) 81px);
+      pointer-events:none;
+    }
+    .post-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 45%,rgba(26,12,4,0.6) 100%);pointer-events:none;}
+    .post-hero-script{
+      position:absolute;right:-20px;top:50%;transform:translateY(-50%);
+      font-family:'Pinyon Script',cursive;font-size:clamp(180px,18vw,280px);
+      color:rgba(196,176,138,0.05);line-height:1;pointer-events:none;user-select:none;
+    }
+    .post-hero-inner{position:relative;z-index:1;padding:0 80px 72px;max-width:1100px;width:100%;}
+    .post-back{font-family:'Jost',sans-serif;font-size:9.9px;font-weight:500;letter-spacing:2.2px;text-transform:uppercase;color:rgba(201,185,138,0.75);text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;transition:color 0.2s;}
+    .post-back:hover{color:#c9b98a;}
+    .post-eyebrow{font-family:'Jost',sans-serif;font-size:9.3px;font-weight:400;letter-spacing:2.6px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+    .post-title{font-family:'Libre Baskerville',serif;font-size:clamp(32px,3.8vw,56px);font-weight:700;font-style:italic;letter-spacing:-0.03em;color:rgba(244,237,216,0.96);line-height:1.08;max-width:800px;margin-bottom:28px;}
+    .post-meta{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding-top:20px;border-top:1px solid rgba(196,176,138,0.18);}
+    .post-meta-sep{width:1px;height:16px;background:rgba(196,176,138,0.25);}
+    .post-date{font-family:'Jost',sans-serif;font-size:9px;font-weight:500;letter-spacing:2.4px;text-transform:uppercase;color:#c9b98a;}
+    .post-author{font-family:'EB Garamond',serif;font-size:16px;font-style:italic;color:rgba(244,237,216,0.6);}
+    .post-read-time{font-family:'Jost',sans-serif;font-size:9px;font-weight:400;letter-spacing:1.8px;text-transform:uppercase;color:rgba(201,185,138,0.45);}
+
+    .post-body{max-width:720px;margin:0 auto;padding:72px 60px 0;}
+    .post-lead{font-family:'EB Garamond',serif;font-size:22px;font-style:italic;font-weight:500;line-height:1.72;color:var(--dark);padding-left:28px;border-left:3px solid var(--rust);margin-bottom:40px;}
+    .post-body p{font-size:18px;line-height:1.9;color:var(--body-color);margin-bottom:24px;}
     .post-body p:last-child{margin-bottom:0;}
-    .post-back{font-family:'Jost',sans-serif;font-size:9.9px;font-weight:500;letter-spacing:2.2px;text-transform:uppercase;color:var(--rust);text-decoration:none;display:inline-block;margin-bottom:32px;transition:color 0.2s;}
-    .post-back:hover{color:var(--dark);}
+    .post-h2{font-family:'Libre Baskerville',serif;font-size:26px;font-weight:700;font-style:italic;letter-spacing:-0.02em;color:var(--dark);margin:48px 0 18px;}
+    .pull-quote{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 40px;margin:40px 0;position:relative;overflow:hidden;}
+    .pull-quote::before{content:'\201C';position:absolute;top:-20px;left:24px;font-family:'Libre Baskerville',serif;font-size:180px;line-height:1;color:rgba(196,176,138,0.1);pointer-events:none;}
+    .pull-quote-text{font-family:'Pinyon Script',cursive;font-size:clamp(24px,2.2vw,32px);color:var(--rust);line-height:1.55;position:relative;z-index:1;}
+    .pull-quote-attr{font-family:'Jost',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--body-color);opacity:0.6;display:block;margin-top:14px;position:relative;z-index:1;}
+    .post-divider{width:44px;height:1.5px;background:var(--gold-border);margin:40px 0;}
+
+    .author-band{background:var(--dark);padding:56px 60px;margin-top:80px;}
+    .author-band-inner{max-width:720px;margin:0 auto;display:grid;grid-template-columns:88px 1fr;gap:32px;align-items:start;}
+    .author-avatar{width:88px;height:88px;border-radius:50%;flex-shrink:0;overflow:hidden;background:linear-gradient(160deg,#c9b98a 0%,#8c6830 100%);display:flex;align-items:center;justify-content:center;}
+    .author-initials{font-family:'Libre Baskerville',serif;font-size:24px;font-style:italic;font-weight:700;color:var(--dark);}
+    .author-label{font-family:'Jost',sans-serif;font-size:9px;font-weight:400;letter-spacing:2.4px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+    .author-name{font-family:'Libre Baskerville',serif;font-size:24px;font-weight:700;font-style:italic;letter-spacing:-0.02em;color:rgba(244,237,216,0.92);margin-bottom:4px;}
+    .author-role{font-family:'Jost',sans-serif;font-size:9px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:rgba(201,185,138,0.5);margin-bottom:16px;}
+    .author-text{font-family:'EB Garamond',serif;font-size:16px;line-height:1.75;color:rgba(244,237,216,0.45);margin-bottom:18px;}
+    .author-link{font-family:'Jost',sans-serif;font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--rust);text-decoration:none;transition:color 0.2s;}
+    .author-link:hover{color:#c9b98a;}
+
     footer{background:#1c0e06;padding:44px 60px 28px;}
     .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:80px;padding-bottom:32px;border-bottom:1px solid rgba(196,176,138,0.12);margin-bottom:20px;}
     .footer-brand{font-family:'Jost',sans-serif;font-size:9.3px;font-weight:400;letter-spacing:4px;text-transform:uppercase;color:#c9b98a;margin-bottom:4px;}
@@ -46,8 +97,24 @@
     .footer-credit a:hover{color:#c9b98a;}
     .footer-legal a{color:inherit;text-decoration:none;}
     .footer-legal a:hover{color:#c9b98a;}
-    @media(max-width:960px){.nav{padding:0 28px;}.nav-list{display:none;}.nav-hamburger{display:block;}.post-hero-inner,.post-body{padding-left:28px;padding-right:28px;}.post-body{padding-top:40px;padding-bottom:60px;}.footer-top{grid-template-columns:1fr;}}
-    @media(max-width:540px){.post-hero-inner,.post-body{padding-left:24px;padding-right:24px;}.post-body{font-size:17px;}.post-body p{font-size:17px;}}
+
+    @media(max-width:960px){
+      .nav{padding:0 28px;}.nav-list{display:none;}.nav-hamburger{display:block;}
+      .post-hero-inner{padding:0 28px 52px;}
+      .post-body{padding:52px 28px 0;}
+      .author-band{padding:44px 28px;}
+      .author-band-inner{grid-template-columns:72px 1fr;gap:20px;}
+      .footer-top{grid-template-columns:1fr;gap:36px;}
+    }
+    @media(max-width:540px){
+      .post-hero-inner{padding:0 24px 44px;}
+      .post-title{font-size:28px;}
+      .post-lead{font-size:19px;padding-left:20px;}
+      .post-body{padding:44px 24px 0;}
+      .post-body p{font-size:17px;}
+      .author-band{padding:36px 24px;}
+      .author-band-inner{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
@@ -64,18 +131,67 @@
   </nav>
 
   <header class="post-hero">
+    <span class="post-hero-script" aria-hidden="true">Room.</span>
     <div class="post-hero-inner">
       <a href="blog.html" class="post-back">← Back to Blog</a>
-      <p class="post-date">February 2026</p>
-      <h1 class="post-title">Why the Right Room Still Beats the Best Algorithm</h1>
+      <p class="post-eyebrow">Human Intelligence</p>
+      <h1 class="post-title">Why the Right Room Still<br>Beats the Best Algorithm</h1>
+      <div class="post-meta">
+        <span class="post-date">January 2026</span>
+        <span class="post-meta-sep"></span>
+        <span class="post-author">By Mickey Hardy, Co-Founder</span>
+        <span class="post-meta-sep"></span>
+        <span class="post-read-time">6 min read</span>
+      </div>
     </div>
   </header>
 
-  <article class="post-body">
-    <p>In a world of AI-generated advice, the highest-leverage decisions still happen in rooms where trust has already been built. Algorithms can surface data, optimize for engagement, and even draft term sheets. But they cannot sit across the table from a founder and tell them when to walk away from a deal. They cannot read a room after a pitch and know which investor is actually going to move. They cannot replicate the kind of judgment that comes from having been in the same seat — and having made the same mistakes.</p>
-    <p>At Advising.com, we believe the most valuable thing we offer is not more information. It is access to people who have already made the decisions our clients are facing. That means boardrooms, fundraises, launch strategy, and the quiet conversations that shape outcomes. The right room is still the one where someone has already earned a place at the table.</p>
-    <p>This is not a rejection of technology. It is a clarification of what technology cannot replace: human discernment, cultivated relationships, and the willingness to say the hard thing when it matters. The best algorithm in the world cannot do that. The right advisor can.</p>
+  <article>
+    <div class="post-body">
+      <p class="post-lead">AI can analyze a market. It cannot read a room. It can optimize a funnel. It cannot close a relationship. The things that actually change a company's trajectory still happen between people — and that gap is widening, not closing.</p>
+
+      <p>We are living through a period in which nearly every company is reaching for AI as their competitive edge. Better data. Faster synthesis. Automated outreach. Personalized funnels. The tools are genuinely impressive, and we use them ourselves. But there is a category error happening in how founders think about what AI can replace — and it is costing them.</p>
+
+      <p>The most valuable decisions in business are not made by the best-informed party. They are made by the most trusted one. And trust is still entirely a human phenomenon. You cannot train it into a model. You cannot compress it into a prompt. It accumulates through presence, repetition, and the willingness to be accountable when things go wrong.</p>
+
+      <div class="post-divider"></div>
+      <h2 class="post-h2">What Rooms Actually Do</h2>
+
+      <p>When we talk about "the right room," we mean something precise. It is not just a meeting. It is a configuration of people — with the right history, the right mandates, and the right alignment of incentives — in which real decisions can be made. These rooms are not easy to access. They are not listed anywhere. They are assembled through relationships built over years, often decades.</p>
+
+      <p>What happens in these rooms is not information exchange. That's what emails are for. What happens is calibration: the principals in the room read each other, test positions, expose constraints, and arrive at a shared understanding of what is actually possible. This process is irreducibly human. It requires body language, sub-text, and the social infrastructure of prior relationships.</p>
+
+      <p>An algorithm can tell you who is in the room. It cannot get you in. It cannot make you credible once you're there. And it cannot do the work that comes after — the follow-up, the nurture, the long arc of relationship maintenance that transforms a meeting into a partnership.</p>
+
+      <div class="pull-quote">
+        <span class="pull-quote-text">"You don't need more information. You need someone who has already been in the room you're trying to get into."</span>
+        <span class="pull-quote-attr">— Mickey Hardy, Co-Founder</span>
+      </div>
+
+      <h2 class="post-h2">The Compounding Value of Human Networks</h2>
+
+      <p>AI does not compound socially. A language model's output is the same whether it is used once or a million times. Human networks are the opposite: they grow more valuable the more they are used well, and they depreciate the moment they are used poorly. A relationship is not a transaction. It is a living thing that requires investment, reciprocity, and care.</p>
+
+      <p>This is why the advisors who genuinely change outcomes are not the ones with the best frameworks or the deepest market knowledge — though those things matter. They are the ones whose relationships are still active, whose word carries weight, and who have the judgment to know which doors to open and when. That combination is extraordinarily rare and impossible to automate.</p>
+
+      <p>We built Advising.com around this conviction. Our value is not in the quality of our analysis — though we take that seriously. Our value is in the rooms we can get you into, and the credibility we bring when we walk you through the door. That is the advantage machines don't have.</p>
+
+      <p>The companies that figure this out — that use AI to move faster, and human relationships to move better — will have a structural edge that is difficult to close. That is the opportunity in front of every founder who reads this.</p>
+    </div>
   </article>
+
+  <div class="author-band">
+    <div class="author-band-inner">
+      <div class="author-avatar"><span class="author-initials">MH</span></div>
+      <div>
+        <p class="author-label">About the Author</p>
+        <p class="author-name">Mickey Hardy</p>
+        <p class="author-role">Co-Founder &amp; Chairman, Special Situations Group</p>
+        <p class="author-text">Founder of Arcadia, Web3's premier marketing firm. Mickey has engineered go-to-market strategies for Worldcoin, Shiba Inu, Aethir, and dozens of category-defining protocols — building the relationship infrastructure that turns attention into value.</p>
+        <a href="about.html" class="author-link">Full profile →</a>
+      </div>
+    </div>
+  </div>
 
   <footer>
     <div class="footer-top">
