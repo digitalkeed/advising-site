@@ -106,6 +106,8 @@
     }
     @media (min-width: 1920px) {
       .page-hero { min-height: 100vh; }
+      .page-hero-content { padding: 0 80px 80px; }
+      .page-hero-sub { max-width: 560px; }
     }
     .page-hero-img {
       position: absolute; inset: 0;
@@ -163,7 +165,7 @@
     /* ═══════ INTRO BANNER ═══════ */
     .intro-band {
       background: var(--dark);
-      padding: 32px 60px;
+      padding: 40px 60px;
       display: grid;
       grid-template-columns: 1fr 1px 1fr;
       gap: 60px;
@@ -197,7 +199,7 @@
       border-top: 1px solid var(--border);
     }
     .story-content {
-      padding: 52px 60px;
+      padding: 64px 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -233,10 +235,10 @@
     }
     .story-body {
       font-family: 'EB Garamond', serif;
-      font-size: 16px; font-weight: 400;
-      line-height: 1.85;
+      font-size: 17px; font-weight: 400;
+      line-height: 1.8;
       color: var(--body-color);
-      max-width: 460px;
+      max-width: 480px;
     }
     .story-body + .story-body { margin-top: 20px; }
     .story-img {
@@ -296,10 +298,6 @@
     }
     .founder-card.reverse {
       grid-template-columns: 1fr 420px;
-    }
-    @media (min-width: 1920px) {
-      .founder-card { min-height: 50vh; }
-      .founder-card.reverse { min-height: 50vh; }
     }
     .founder-card-photo {
       position: relative; overflow: hidden;
@@ -462,47 +460,6 @@
     }
     /* reset padding since we have global 60px padding on the section */
     .founder-achievements { padding: 0; }
-
-    /* ═══════ FOUNDER QUOTE ═══════ */
-    .founder-quote {
-      background: var(--bg-alt);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 44px 60px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .founder-quote::before {
-      content: '\201C';
-      position: absolute; top: -40px; left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Libre Baskerville', serif;
-      font-size: 280px;
-      line-height: 1;
-      color: rgba(196,176,138,0.15);
-      pointer-events: none;
-    }
-    .founder-quote-inner {
-      position: relative; z-index: 1;
-      max-width: 760px; margin: 0 auto;
-    }
-    .founder-quote-text {
-      font-family: 'Pinyon Script', cursive;
-      font-size: clamp(1.8rem, 3vw, 2.8rem);
-      color: var(--rust);
-      line-height: 1.55;
-      display: block;
-      margin-bottom: 24px;
-    }
-    .founder-quote-attr {
-      font-family: 'Jost', sans-serif;
-      font-size: 9.3px; font-weight: 400;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--body-color);
-      opacity: 0.6;
-    }
 
     /* ═══════ COMBINED VISION ═══════ */
     .vision {
@@ -735,6 +692,59 @@
     .footer-legal a { color: inherit; text-decoration: none; }
     .footer-legal a:hover { color: #c9b98a; }
 
+    /* ═══════ 1920×1080 SECTION SIZING + UX ═══════ */
+    @media (min-width: 1920px) {
+      .intro-band {
+        min-height: 20vh;
+        padding: 48px 80px;
+        gap: 80px;
+      }
+      .intro-band-num { font-size: 36px; }
+      .story {
+        min-height: 100vh;
+      }
+      .story-content {
+        padding: 80px 80px;
+      }
+      .story-body { max-width: 520px; }
+      .story-body + .story-body { margin-top: 24px; }
+      .founder-header {
+        padding: 80px 80px 56px;
+      }
+      .founder-card,
+      .founder-card.reverse {
+        min-height: 50vh;
+      }
+      .founder-card-body {
+        padding: 56px 80px;
+      }
+      .founder-achievements {
+        padding: 56px 80px;
+      }
+      .vision {
+        min-height: 100vh;
+      }
+      .vision-content {
+        padding: 80px 80px;
+      }
+      .vision-body { max-width: 520px; }
+      .vision-body + .vision-body { margin-top: 20px; }
+      .vision-cell {
+        padding: 40px 56px;
+      }
+      .about-cta {
+        min-height: 100vh;
+        padding: 120px 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .about-cta-inner {
+        max-width: 720px;
+      }
+      .about-cta-body { max-width: 560px; margin-left: auto; margin-right: auto; }
+    }
+
     /* Focus visible for keyboard / a11y */
     .nav-list a:focus-visible,
     .nav-logo:focus-visible,
@@ -771,7 +781,6 @@
       .founder-card-body { padding: 52px 28px; border-left: none !important; border-right: none !important; border-top: 1px solid var(--border); }
       .founder-achievements { grid-template-columns: 1fr; }
       .achievement-cell { padding: 44px 28px; }
-      .founder-quote { padding: 56px 28px; }
       .vision { grid-template-columns: 1fr; }
       .vision-content { padding: 52px 28px; }
       .vision-body { max-width: 100%; }
@@ -805,7 +814,6 @@
       .vision-cell-text { font-size: 16px; }
       .achievement-cell { padding: 36px 24px; }
       .achievement-num { font-size: 36px; }
-      .founder-quote { padding: 48px 24px; }
       .vision-content { padding: 40px 24px; }
       .vision-cell { padding: 32px 24px; }
       .about-cta { padding: 64px 24px; }
@@ -947,13 +955,6 @@
   </div>
 
   <!-- MICKEY QUOTE -->
-  <div class="founder-quote">
-    <div class="founder-quote-inner">
-      <span class="founder-quote-text">"In Web3, you don't win with the best technology. You win with the community that believes in it first."</span>
-      <span class="founder-quote-attr">— Mickey Hardy, Co-Founder</span>
-    </div>
-  </div>
-
   <!-- ═══ BRIAN EVANS ═══ -->
   <div class="founder-card reverse" style="border-top:1px solid var(--border);">
     <div class="founder-card-photo">
@@ -1011,14 +1012,6 @@
       <div class="achievement-num">20+ Years</div>
       <div class="achievement-title">Digital Economy Expertise</div>
       <p class="achievement-body">Has navigated every major digital wave — from Web1 to mobile to social to Web3 — advising founders on how to position for the next shift before the mainstream sees it coming.</p>
-    </div>
-  </div>
-
-  <!-- BRIAN QUOTE -->
-  <div class="founder-quote" style="background:var(--bg);">
-    <div class="founder-quote-inner">
-      <span class="founder-quote-text">"The companies that scale are never the ones with the best idea. They're the ones with founders who refuse to stop building when it gets hard."</span>
-      <span class="founder-quote-attr">— Brian Evans, Co-Founder</span>
     </div>
   </div>
 
