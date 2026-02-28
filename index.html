@@ -32,10 +32,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ═══════ PAGE ROUTING ═══════ */
-    .page { display: none; }
-    .page.active { display: block; }
-
     /* ═══════ NAV ═══════ */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 500;
@@ -53,9 +49,10 @@
       text-transform: uppercase;
       color: var(--dark);
       text-decoration: none;
-      cursor: pointer;
     }
-    .nav-list { display: flex; gap: 40px; list-style: none; }
+    .nav-list {
+      display: flex; gap: 40px; list-style: none;
+    }
     .nav-list a {
       font-family: 'Jost', sans-serif;
       font-size: 9.9px; font-weight: 400;
@@ -65,10 +62,8 @@
       text-decoration: none;
       opacity: 0.65;
       transition: opacity 0.2s;
-      cursor: pointer;
     }
-    .nav-list a:hover,
-    .nav-list a.active { opacity: 1; }
+    .nav-list a:hover { opacity: 1; }
     .nav-cta {
       font-family: 'Jost', sans-serif;
       font-size: 9.9px; font-weight: 500;
@@ -78,12 +73,9 @@
       background: var(--dark);
       padding: 15px 37px;
       text-decoration: none;
-      cursor: pointer;
-      border-radius: 0;
       transition: background 0.25s;
     }
     .nav-cta:hover { background: var(--rust); }
-    .nav-cta.active { background: var(--rust); }
     .nav-hamburger {
       display: none;
       background: none; border: none; cursor: pointer;
@@ -99,18 +91,187 @@
     .nav-hamburger span { top: 9px; }
     .nav-hamburger::before { content: ''; top: 0; }
     .nav-hamburger::after { content: ''; bottom: 0; }
-    /* Mobile menu open */
-    .nav-mobile-open .nav-list {
-      display: flex; flex-direction: column;
-      position: fixed; top: 60px; left: 0; right: 0;
-      background: rgba(244,237,216,0.98);
-      backdrop-filter: blur(16px);
-      padding: 24px 28px;
-      gap: 20px;
-      border-bottom: 1px solid var(--border);
+
+    /* ═══════ HERO ═══════ */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      padding-top: 70px;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 0 0 0 60px;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow-line { width: 32px; height: 1px; background: var(--gold-border); }
+    .hero-eyebrow-text {
+      font-family: 'Jost', sans-serif;
+      font-size: 9.9px; font-weight: 500; font-style: italic;
+      letter-spacing: 2.78px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hero-h1-main {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(48px, 5.2vw, 88.9px);
+      font-weight: 700; font-style: italic;
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      color: var(--dark);
+    }
+    .hero-h1-script {
+      font-family: 'Pinyon Script', cursive;
+      font-size: clamp(56px, 7.2vw, 122.757px);
+      font-weight: 400;
+      line-height: 1.35;
+      color: var(--rust);
+      display: block;
+    }
+    .hero-body {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px; font-weight: 400;
+      line-height: 1.7;
+      color: var(--body-color);
+      max-width: 393px;
+      margin-top: 22px;
+    }
+    .hero-line {
+      width: 40px; height: 2px;
+      background: var(--dark);
+      margin-top: 32px;
+    }
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, rgb(216,200,152) 0%, rgb(184,154,88) 30%, rgb(140,104,48) 60%, rgb(82,46,14) 100%);
+    }
+    .hero-right img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      mix-blend-mode: luminosity;
+      opacity: 0.85;
+    }
+    .hero-right::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 65% 35%, transparent 25%, rgba(20,10,2,0.5) 100%);
+      pointer-events: none;
     }
 
-    /* ═══════ SHARED UTILITIES ═══════ */
+    /* ═══════ PARTNERS ═══════ */
+    .partners {
+      background: var(--dark);
+      height: 56px;
+      display: flex; align-items: center;
+      padding: 0 60px;
+      gap: 32px;
+      border-top: 2px solid var(--dark);
+      overflow: hidden;
+    }
+    .partners-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 9.3px; font-weight: 400;
+      letter-spacing: 2.6px;
+      text-transform: uppercase;
+      color: #c9b98a;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .partners-div {
+      width: 1px; height: 20px;
+      background: rgba(255,255,255,0.1);
+      flex-shrink: 0;
+    }
+    .partners-logos {
+      display: flex; align-items: center; gap: 48px;
+    }
+    .partners-logos img {
+      width: 120px; height: 24px;
+      object-fit: contain; object-position: center;
+      filter: brightness(0) invert(0.8) sepia(0.3) saturate(0.5) hue-rotate(15deg);
+      opacity: 0.75;
+    }
+
+    /* ═══════ STATS ═══════ */
+    .stats {
+      display: flex;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--gold-border);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .stat {
+      flex: 1;
+      padding: 56px 36px;
+      border-right: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: var(--bg); }
+    .stat::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--rust);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .stat:hover::after { transform: scaleX(1); }
+    .stat-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 9.3px; font-weight: 400;
+      letter-spacing: 2.6px;
+      text-transform: uppercase;
+      color: var(--body-color);
+      margin-bottom: 20px;
+    }
+    .stat-num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(32px, 2.8vw, 47.9px);
+      font-weight: 700; font-style: italic;
+      letter-spacing: -0.025em;
+      color: var(--dark);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+    .stat-sub {
+      font-family: 'Jost', sans-serif;
+      font-size: 9.6px; font-weight: 400;
+      letter-spacing: 0.96px;
+      text-transform: uppercase;
+      color: var(--body-color);
+      opacity: 0.65;
+    }
+
+    /* ═══════ PHILOSOPHY ═══════ */
+    .philosophy {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .philosophy-img {
+      position: relative; overflow: hidden;
+      min-height: 550px;
+    }
+    .philosophy-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .philosophy-caption {
+      position: absolute;
+      bottom: 36px; left: 52px;
+      font-family: 'Pinyon Script', cursive;
+      font-size: 32px;
+      color: rgba(255,255,255,0.45);
+    }
+    .philosophy-content {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 72px 80px;
+    }
     .eyebrow {
       font-family: 'Jost', sans-serif;
       font-size: 9.3px; font-weight: 400;
@@ -119,69 +280,373 @@
       color: var(--gold);
       margin-bottom: 20px;
     }
+    .philosophy-h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(36px, 3.2vw, 54.7px);
+      font-weight: 700; font-style: italic;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--dark);
+    }
+    .philosophy-h2-script {
+      font-family: 'Pinyon Script', cursive;
+      font-size: clamp(42px, 3.8vw, 65px);
+      font-weight: 400;
+      color: var(--rust);
+      line-height: 1.2;
+      letter-spacing: -0.021em;
+      display: block;
+    }
     .divider-rule {
       width: 44px; height: 1.5px;
       background: var(--gold-border);
-      margin: 16px 0;
+      margin: 28px 0;
     }
-    .btn-dark {
-      font-family: 'Jost', sans-serif;
-      font-size: clamp(9.9px, 0.72vw, 12px); font-weight: 500;
-      letter-spacing: 2.2px;
-      text-transform: uppercase;
-      color: var(--cream);
-      background: var(--dark);
-      padding: clamp(14px, 1.1vw, 20px) clamp(30px, 2.8vw, 52px);
-      text-decoration: none;
-      display: inline-block;
-      cursor: pointer;
-      transition: background 0.25s;
+    .philosophy-body {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px; font-weight: 400;
+      line-height: 1.8;
+      color: var(--body-color);
+      max-width: 456px;
+      margin-bottom: 40px;
     }
-    .btn-dark:hover { background: var(--rust); }
-    .btn-outline-dark {
-      font-family: 'Jost', sans-serif;
-      font-size: clamp(9.9px, 0.72vw, 12px); font-weight: 500;
-      letter-spacing: 2.2px;
-      text-transform: uppercase;
-      color: var(--dark);
-      background: transparent;
-      border: 1px solid var(--dark);
-      padding: clamp(13px, 1vw, 19px) clamp(30px, 2.8vw, 52px);
-      text-decoration: none;
-      display: inline-block;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-    .btn-outline-dark:hover { background: var(--dark); color: var(--cream); }
     .btn-block {
       display: block;
       font-family: 'Jost', sans-serif;
-      font-size: clamp(9.9px, 0.72vw, 12px); font-weight: 500;
+      font-size: 9.9px; font-weight: 500;
       letter-spacing: 2.2px;
       text-transform: uppercase;
       text-align: center;
       color: var(--cream);
       background: var(--dark);
-      padding: clamp(14px, 1.1vw, 20px) clamp(30px, 2.8vw, 52px);
+      padding: 16px 37px;
       text-decoration: none;
-      border-radius: 0;
-      cursor: pointer;
       transition: background 0.25s;
     }
     .btn-block:hover { background: var(--rust); }
 
-    /* ═══════ SHARED FOOTER ═══════ */
-    .site-footer {
+    /* ═══════ WHAT WE ADVISE ON ═══════ */
+    .advise-header {
+      padding: 64px 60px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .advise-h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(40px, 4.9vw, 83.2px);
+      font-weight: 700; font-style: italic;
+      letter-spacing: clamp(4px, 0.68vw, 11.648px);
+      text-transform: uppercase;
+      color: var(--dark);
+      line-height: 1;
+      margin-top: 14px;
+    }
+    .advise-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .advise-cell {
+      padding: 72px 80px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .advise-cell:nth-child(2n) { border-right: none; }
+    .advise-cell:nth-child(n+3) { border-bottom: none; }
+    .advise-cell:hover { background: var(--bg-alt); }
+    .advise-cell::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--rust);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .advise-cell:hover::after { transform: scaleX(1); }
+    .advise-cell:hover .advise-num { color: var(--gold-border); }
+    .advise-num {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(36px, 3.2vw, 54.4px);
+      font-weight: 700; font-style: italic;
+      letter-spacing: -0.02em;
+      color: var(--gold-light);
+      line-height: 1;
+      margin-bottom: 24px;
+      transition: color 0.3s;
+    }
+    .advise-title {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(22px, 1.78vw, 30.4px);
+      font-weight: 400; font-style: italic;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+    .advise-body {
+      font-family: 'EB Garamond', serif;
+      font-size: 14.4px; font-weight: 400;
+      line-height: 1.75;
+      color: var(--body-color);
+      max-width: 421px;
+    }
+
+    /* ═══════ QUOTE (cognac stripe — “handshake”) ═══════ */
+    .quote-stripe {
+      position: relative;
+      background: var(--rust);
+      background-image: linear-gradient(to bottom, rgba(82,46,14,0.75), rgba(82,46,14,0.85)), url(images/quote-bg.png);
+      background-size: cover;
+      background-position: center;
+      padding: 96px 120px;
+      overflow: hidden;
+      text-align: center;
+    }
+    .quote-stripe::before {
+      content: '\201C';
+      position: absolute; top: -60px; left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Libre Baskerville', serif;
+      font-size: 360px;
+      line-height: 1;
+      color: rgba(0,0,0,0.07);
+      pointer-events: none;
+    }
+    .quote-stripe::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 18px,
+        rgba(255,255,255,0.025) 18px, rgba(255,255,255,0.025) 19px
+      );
+      pointer-events: none;
+    }
+    .quote-stripe-bg,
+    .quote-stripe-ov { display: none; }
+    .quote-inner {
+      position: relative; z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .quote-text {
+      display: block;
+      margin-bottom: 28px;
+      font-family: 'Pinyon Script', cursive;
+      font-size: clamp(1.8rem, 3.2vw, 3rem);
+      font-weight: 400;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.88);
+    }
+    .quote-attr {
+      display: block;
+      font-family: 'Jost', sans-serif;
+      font-size: 9.3px; font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+    }
+
+    /* ═══════ ADVISORS ═══════ */
+    .advisors {
+      padding: 80px 60px 88px;
+    }
+    .advisors-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .advisors-h2 {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 2px;
+      margin-top: 8px;
+    }
+    .advisors-h2-our {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(34px, 3vw, 51.2px);
+      font-weight: 700; font-style: italic;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+    }
+    .advisors-h2-script {
+      font-family: 'Pinyon Script', cursive;
+      font-size: clamp(42px, 3.7vw, 64px);
+      font-weight: 400;
+      color: var(--rust);
+      line-height: 1;
+    }
+    .advisors-sub {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px; font-style: italic;
+      color: var(--body-color);
+      margin-top: 10px;
+    }
+    .advisors-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+    }
+    .advisor-card {
+      display: flex;
+      background: var(--bg);
+      transition: background 0.3s;
+    }
+    .advisor-card:hover { background: var(--bg-alt); }
+    .advisor-photo {
+      flex: 0 0 260px;
+      overflow: hidden;
+      position: relative;
+    }
+    .advisor-photo img {
+      width: 100%; height: 100%;
+      min-height: 398px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .advisor-info {
+      flex: 1;
+      padding: 52px 48px;
+      display: flex; flex-direction: column;
+    }
+    .advisor-pos {
+      font-family: 'Jost', sans-serif;
+      font-size: 9.3px; font-weight: 400;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .advisor-name {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 32px;
+      font-weight: 700; font-style: italic;
+      letter-spacing: -0.02em;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .advisor-role {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 28px;
+      color: var(--rust);
+      margin-bottom: 24px;
+    }
+    .advisor-bio {
+      font-family: 'EB Garamond', serif;
+      font-size: 14.4px; font-weight: 400;
+      line-height: 1.8;
+      color: var(--body-color);
+      flex: 1;
+    }
+    .advisor-link {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Jost', sans-serif;
+      font-size: 9.3px; font-weight: 500;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--rust);
+      text-decoration: none;
+      margin-top: 20px;
+      transition: gap 0.2s, color 0.2s;
+    }
+    .advisor-link:hover { gap: 16px; color: var(--dark); }
+
+    /* ═══════ DECISIONS ═══════ */
+    .decisions {
+      position: relative;
+      padding: 120px 60px;
+      text-align: center;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+    }
+    .decisions-ring {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(196,176,138,0.25);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .decisions-ring-lg { width: 680px; height: 680px; }
+    .decisions-ring-sm { width: 400px; height: 400px; }
+    .decisions-inner {
+      position: relative; z-index: 1;
+      max-width: 760px; margin: 0 auto;
+    }
+    .decisions-h2-main {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(44px, 4.7vw, 80px);
+      font-weight: 700; font-style: italic;
+      letter-spacing: -0.025em;
+      color: var(--dark);
+      line-height: 0.96;
+    }
+    .decisions-h2-script {
+      font-family: 'Pinyon Script', cursive;
+      font-size: clamp(50px, 5vw, 85.5px);
+      font-weight: 400;
+      color: var(--rust);
+      line-height: 1.35;
+      display: block;
+    }
+    .decisions-body {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px; font-weight: 400;
+      line-height: 1.8;
+      color: var(--body-color);
+      max-width: 536px;
+      margin: 28px auto 40px;
+    }
+    .decisions-btns {
+      display: flex; gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-dark {
+      font-family: 'Jost', sans-serif;
+      font-size: 9.9px; font-weight: 500;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: var(--dark);
+      padding: 16px 37px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.25s;
+    }
+    .btn-dark:hover { background: var(--rust); }
+    .btn-outline-dark {
+      font-family: 'Jost', sans-serif;
+      font-size: 9.9px; font-weight: 500;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: var(--dark);
+      background: transparent;
+      border: 1px solid var(--dark);
+      padding: 15px 37px;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.25s;
+    }
+    .btn-outline-dark:hover {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    /* ═══════ FOOTER ═══════ */
+    footer {
       background: #1c0e06;
-      padding: 44px 60px 28px;
+      padding: 72px 60px 40px;
     }
     .footer-top {
       display: grid;
       grid-template-columns: 1.6fr 1fr 1fr;
       gap: 80px;
-      padding-bottom: 32px;
+      padding-bottom: 52px;
       border-bottom: 1px solid rgba(196,176,138,0.12);
-      margin-bottom: 20px;
+      margin-bottom: 28px;
     }
     .footer-brand {
       font-family: 'Jost', sans-serif;
@@ -199,979 +664,95 @@
     }
     .footer-desc {
       font-family: 'EB Garamond', serif;
-      font-size: 14.4px; line-height: 1.85;
+      font-size: 14.4px; font-weight: 400;
+      line-height: 1.85;
       color: rgba(244,237,216,0.35);
       max-width: 320px;
     }
     .footer-col-head {
       font-family: 'Jost', sans-serif;
-      font-size: 9.3px;
+      font-size: 9.3px; font-weight: 400;
       letter-spacing: 2.6px;
       text-transform: uppercase;
       color: #c9b98a;
       margin-bottom: 24px;
     }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .footer-links {
+      list-style: none;
+      display: flex; flex-direction: column; gap: 14px;
+    }
     .footer-links a {
       font-family: 'EB Garamond', serif;
-      font-size: 16px;
+      font-size: 16px; font-weight: 400;
       color: rgba(244,237,216,0.4);
       text-decoration: none;
-      cursor: pointer;
       transition: color 0.2s;
     }
     .footer-links a:hover { color: #c9b98a; }
-    .footer-contact { font-family: 'EB Garamond', serif; font-size: 16px; color: rgba(244,237,216,0.4); margin-bottom: 14px; }
-    .footer-contact a { color: inherit; text-decoration: none; }
+    .footer-contact {
+      font-family: 'EB Garamond', serif;
+      font-size: 16px; font-weight: 400;
+      color: rgba(244,237,216,0.4);
+      margin-bottom: 14px;
+    }
+    .footer-contact a {
+      color: inherit; text-decoration: none;
+    }
     .footer-contact a:hover { color: #c9b98a; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
     .footer-copy, .footer-legal {
       font-family: 'Jost', sans-serif;
-      font-size: 9px;
+      font-size: 9px; font-weight: 400;
       letter-spacing: 1.6px;
       text-transform: uppercase;
       color: rgba(196,176,138,0.3);
     }
-    .footer-legal a { color: inherit; text-decoration: none; }
-    .footer-legal a:hover { color: #c9b98a; }
     .footer-credit {
-      margin-left: 0.5em; color: #FFF0C6;
       font-family: 'Jost', sans-serif;
-      font-size: 9px;
+      font-size: 9px; font-weight: 400;
       letter-spacing: 1.6px;
       text-transform: uppercase;
+      color: #FFF0C6;
+      margin-left: 0.5em;
     }
     .footer-credit a { color: #FFF0C6; text-decoration: none; transition: color 0.2s; }
     .footer-credit a:hover { color: #c9b98a; }
+    .footer-legal a { color: inherit; text-decoration: none; }
+    .footer-legal a:hover { color: #c9b98a; }
 
-    /* ══════════════════════════════════════════
-       HOME PAGE STYLES
-    ══════════════════════════════════════════ */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      height: calc(100vh - 70px);
-      min-height: 560px;
-      padding-top: 70px;
-      overflow: hidden;
-    }
-    .hero-left {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 0 0 0 60px;
-    }
-    .hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
-    .hero-eyebrow-line { width: 32px; height: 1px; background: var(--gold-border); }
-    .hero-eyebrow-text {
-      font-family: 'Jost', sans-serif;
-      font-size: 9.9px; font-weight: 500; font-style: italic;
-      letter-spacing: 2.78px; text-transform: uppercase; color: var(--gold);
-    }
-    .hero-h1-main {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(38px, 4.6vw, 80px);
-      font-weight: 700; font-style: italic;
-      line-height: 0.96; letter-spacing: -0.025em; color: var(--dark);
-    }
-    .hero-h1-script {
-      font-family: 'Pinyon Script', cursive;
-      font-size: clamp(48px, 6.4vw, 110px);
-      font-weight: 400; line-height: 1.25; color: var(--rust); display: block;
-    }
-    .hero-body {
-      font-family: 'EB Garamond', serif;
-      font-size: clamp(15px, 1.05vw, 18px); line-height: 1.7; color: var(--body-color);
-      max-width: 440px; margin-top: 18px;
-    }
-    .hero-line { width: 40px; height: 2px; background: var(--dark); margin-top: 20px; }
-    .hero-right {
-      position: relative; overflow: hidden;
-      background: linear-gradient(160deg, rgb(216,200,152) 0%, rgb(184,154,88) 30%, rgb(140,104,48) 60%, rgb(82,46,14) 100%);
-    }
-    .hero-right img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; mix-blend-mode: luminosity; opacity: 0.85;
-    }
-    .hero-right::after {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 65% 35%, transparent 25%, rgba(20,10,2,0.5) 100%);
-      pointer-events: none;
+    /* Focus visible for keyboard / a11y */
+    .nav-list a:focus-visible,
+    .nav-logo:focus-visible,
+    .nav-cta:focus-visible,
+    .nav-hamburger:focus-visible,
+    .btn-dark:focus-visible,
+    .btn-outline-dark:focus-visible,
+    .footer-links a:focus-visible,
+    .footer-credit a:focus-visible,
+    .footer-legal a:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 2px;
     }
 
-    .partners {
-      background: var(--dark); height: 46px;
-      display: flex; align-items: center; padding: 0 60px; gap: 32px;
-      border-top: 2px solid var(--dark); overflow: hidden;
-    }
-    .partners-label {
-      font-family: 'Jost', sans-serif; font-size: 9.3px;
-      letter-spacing: 2.6px; text-transform: uppercase; color: #c9b98a;
-      white-space: nowrap; flex-shrink: 0;
-    }
-    .partners-div { width: 1px; height: 20px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
-    .partners-logos { display: flex; align-items: center; gap: 48px; }
-    .partners-logos img {
-      height: 24px; object-fit: contain;
-      filter: brightness(0) invert(0.8) sepia(0.3) saturate(0.5) hue-rotate(15deg); opacity: 0.75;
-    }
-
-    .stats {
-      display: flex; background: var(--bg-alt);
-      border-top: 1px solid var(--gold-border); border-bottom: 1px solid var(--gold-border);
-    }
-    .stat {
-      flex: 1; padding: 20px 32px;
-      border-right: 1px solid var(--border);
-      position: relative; overflow: hidden; transition: background 0.3s;
-    }
-    .stat:last-child { border-right: none; }
-    .stat:hover { background: var(--bg); }
-    .stat::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: var(--rust); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
-    }
-    .stat:hover::after { transform: scaleX(1); }
-    .stat-label {
-      font-family: 'Jost', sans-serif; font-size: 9.3px;
-      letter-spacing: 2.6px; text-transform: uppercase; color: var(--body-color); margin-bottom: 10px;
-    }
-    .stat-num {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(28px, 2.4vw, 44px);
-      font-weight: 700; font-style: italic; letter-spacing: -0.025em;
-      color: var(--dark); line-height: 1; margin-bottom: 10px;
-    }
-    .stat-sub {
-      font-family: 'Jost', sans-serif; font-size: 9.6px;
-      letter-spacing: 0.96px; text-transform: uppercase; color: var(--body-color); opacity: 0.65;
-    }
-
-    .philosophy { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; overflow: hidden; }
-    .philosophy-img { position: relative; overflow: hidden; height: 100%; }
-    .philosophy-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .philosophy-caption {
-      position: absolute; bottom: 40px; left: 52px;
-      font-family: 'Pinyon Script', cursive; font-size: clamp(28px, 2.4vw, 42px); color: rgba(255,255,255,0.45);
-    }
-    .philosophy-content {
-      display: flex; flex-direction: column; justify-content: center; padding: clamp(36px, 3.5vw, 64px) clamp(52px, 5vw, 88px); height: 100%;
-    }
-    .philosophy-h2 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(28px, 3.2vw, 58px);
-      font-weight: 700; font-style: italic; line-height: 1.05; letter-spacing: -0.025em; color: var(--dark); margin-bottom: 4px;
-    }
-    .philosophy-h2-script {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(36px, 4vw, 72px);
-      color: var(--rust); line-height: 1.1; display: block;
-    }
-    .philosophy-body {
-      font-family: 'EB Garamond', serif; font-size: clamp(15px, 1.1vw, 18px); line-height: 1.8;
-      color: var(--body-color); max-width: 560px; margin-bottom: 32px;
-    }
-
-    .advise-header {
-      padding: clamp(20px, 1.8vw, 32px) 60px; text-align: center;
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    }
-    .advise-h2 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(30px, 3.8vw, 68px);
-      font-weight: 700; font-style: italic;
-      letter-spacing: clamp(4px, 0.68vw, 12px);
-      text-transform: uppercase; color: var(--dark); line-height: 1; margin-top: 14px;
-    }
-    .advise-grid { display: grid; grid-template-columns: 1fr 1fr; }
-    .advise-cell {
-      padding: clamp(36px, 3vw, 52px) clamp(40px, 3.5vw, 60px);
-      border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      position: relative; overflow: hidden; transition: background 0.3s;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .advise-cell:nth-child(2n) { border-right: none; }
-    .advise-cell:nth-child(n+3) { border-bottom: none; }
-    .advise-cell:hover { background: var(--bg-alt); }
-    .advise-cell::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: var(--rust); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
-    }
-    .advise-cell:hover::after { transform: scaleX(1); }
-    .advise-cell:hover .advise-num { color: var(--gold-border); }
-    .advise-num {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(28px, 2.4vw, 44px);
-      font-weight: 700; font-style: italic; letter-spacing: -0.02em;
-      color: var(--gold-light); line-height: 1; margin-bottom: 14px; transition: color 0.3s;
-    }
-    .advise-title {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(20px, 1.7vw, 30px);
-      font-weight: 400; font-style: italic; color: var(--dark); margin-bottom: 12px;
-    }
-    .advise-body {
-      font-family: 'EB Garamond', serif; font-size: clamp(14px, 1.05vw, 17px); line-height: 1.8;
-      color: var(--body-color); max-width: 520px;
-    }
-
-    .quote-stripe {
-      position: relative; background: var(--rust);
-      padding: clamp(20px, 2.2vw, 40px) clamp(60px, 8vw, 160px);
-      overflow: hidden; text-align: center;
-    }
-    .quote-stripe-bg { position: absolute; inset: 0; z-index: 0; }
-    .quote-stripe-bg img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: sepia(0.5) brightness(0.45) contrast(1.05);
-    }
-    .quote-stripe-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to bottom, rgba(90,40,26,0.5) 0%, rgba(58,36,16,0.88) 100%);
-      pointer-events: none;
-    }
-    .quote-stripe::before {
-      content: '\201C'; position: absolute; top: -60px; left: 50%; z-index: 2;
-      transform: translateX(-50%);
-      font-family: 'Libre Baskerville', serif; font-size: 360px; line-height: 1;
-      color: rgba(0,0,0,0.07); pointer-events: none;
-    }
-    .quote-stripe::after {
-      content: ''; position: absolute; inset: 0; z-index: 2;
-      background-image: repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(255,255,255,0.025) 18px, rgba(255,255,255,0.025) 19px);
-      pointer-events: none;
-    }
-    .quote-inner { position: relative; z-index: 3; max-width: 820px; margin: 0 auto; }
-    .quote-text {
-      display: block; margin-bottom: 20px;
-      font-family: 'Pinyon Script', cursive;
-      font-size: clamp(1.8rem, 3.6vw, 3.6rem); line-height: 1.5; color: rgba(255,255,255,0.88);
-    }
-    .quote-attr {
-      display: block; font-family: 'Jost', sans-serif; font-size: 9.3px;
-      letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.38);
-    }
-
-    .advisors { padding: clamp(20px, 2vw, 36px) 0 0; }
-    .advisors-header { text-align: center; padding: 0 clamp(40px, 5vw, 100px); margin-bottom: clamp(16px, 1.6vw, 28px); }
-    .advisors-h2 { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin-top: 8px; }
-    .advisors-h2-our {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(28px, 3vw, 56px);
-      font-weight: 700; font-style: italic; letter-spacing: -0.02em; color: var(--dark);
-    }
-    .advisors-h2-script {
-      font-family: 'Pinyon Script', cursive;
-      font-size: clamp(36px, 4vw, 76px); color: var(--rust); line-height: 1;
-    }
-    .advisors-sub { font-family: 'EB Garamond', serif; font-size: clamp(15px, 1.1vw, 19px); font-style: italic; color: var(--body-color); margin-top: 10px; }
-    .advisors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
-    /* Card: photo fills 44% of each card width, info fills rest */
-    .advisor-card { display: flex; background: var(--bg); transition: background 0.3s; overflow: hidden; }
-    .advisor-card:hover { background: var(--bg-alt); }
-    .advisor-photo { flex: 0 0 44%; overflow: hidden; position: relative;
-      background: linear-gradient(160deg, rgb(216,200,152) 0%, rgb(140,104,48) 60%, rgb(82,46,14) 100%);
-    }
-    .advisor-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 12%; display: block;
-    }
-    /* Subtle gradient overlay at bottom of photo so name badge reads cleanly */
-    .advisor-photo::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(20,10,2,0.45) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .advisor-info { flex: 1; padding: clamp(44px, 4vw, 72px) clamp(40px, 4.5vw, 80px); display: flex; flex-direction: column; justify-content: center; border-left: 1px solid var(--border); }
-    .advisor-pos {
-      font-family: 'Jost', sans-serif; font-size: clamp(9.5px, 0.65vw, 11px);
-      letter-spacing: 2.4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
-    }
-    .advisor-name {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(26px, 2.8vw, 52px);
-      font-weight: 700; font-style: italic; letter-spacing: -0.02em; color: var(--dark); line-height: 1; margin-bottom: 8px;
-    }
-    .advisor-role { font-family: 'Pinyon Script', cursive; font-size: clamp(24px, 2.2vw, 42px); color: var(--rust); margin-bottom: 20px; display: block; }
-    .advisor-divider { width: 44px; height: 1.5px; background: var(--gold-border); margin-bottom: 28px; }
-    .advisor-bio { font-family: 'EB Garamond', serif; font-size: clamp(15px, 1.2vw, 20px); line-height: 1.85; color: var(--body-color); max-width: 560px; }
-    .advisor-link {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-family: 'Jost', sans-serif; font-size: clamp(9px, 0.65vw, 11px); font-weight: 500;
-      letter-spacing: 2.4px; text-transform: uppercase;
-      color: var(--rust); text-decoration: none; cursor: pointer; margin-top: 32px; transition: gap 0.2s, color 0.2s;
-    }
-    .advisor-link:hover { gap: 16px; color: var(--dark); }
-
-    .process { padding: 20px 0 24px; border-top: 1px solid var(--border); }
-    .process-eyebrow { text-align: center; margin-bottom: 40px; }
-    .process-cols { display: grid; grid-template-columns: repeat(3, 366px); justify-content: center; }
-    .process-col {
-      padding: 20px 40px; border-left: 1px solid var(--border);
-      text-align: center; transition: background 0.3s;
-    }
-    .process-col:hover { background: var(--bg); }
-    .process-col:first-child { border-left: none; }
-    .process-roman {
-      font-family: 'Libre Baskerville', serif; font-size: 48px;
-      color: var(--gold-light); line-height: 1; margin-bottom: 20px; display: block; transition: color 0.3s;
-    }
-    .process-col:hover .process-roman { color: var(--rust); }
-    .process-title {
-      font-family: 'Libre Baskerville', serif; font-size: 27.2px;
-      font-weight: 400; font-style: italic; color: var(--dark); line-height: 1.2; margin-bottom: 18px;
-    }
-    .process-body { font-family: 'EB Garamond', serif; font-size: 14.4px; line-height: 1.75; color: var(--body-color); }
-
-    .decisions {
-      position: relative; padding: 60px; text-align: center;
-      overflow: hidden; border-top: 1px solid var(--border);
-    }
-    .decisions-ring {
-      position: absolute; border-radius: 50%;
-      border: 1px solid rgba(196,176,138,0.25);
-      top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;
-    }
-    .decisions-ring-lg { width: min(820px, 76vh); height: min(820px, 76vh); }
-    .decisions-ring-sm { width: min(480px, 44vh); height: min(480px, 44vh); }
-    .decisions-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; }
-    .decisions-h2-main {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(36px, 4.2vw, 72px);
-      font-weight: 700; font-style: italic; letter-spacing: -0.025em; color: var(--dark); line-height: 0.96;
-    }
-    .decisions-h2-script {
-      font-family: 'Pinyon Script', cursive;
-      font-size: clamp(44px, 5vw, 88px); color: var(--rust); line-height: 1.3; display: block;
-    }
-    .decisions-body {
-      font-family: 'EB Garamond', serif; font-size: clamp(15px, 1.05vw, 18px); line-height: 1.75;
-      color: var(--body-color); max-width: 600px; margin: 20px auto 36px;
-    }
-    .decisions-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-    /* ══════════════════════════════════════════
-       HOME PAGE FULL-SCREEN SECTIONS
-    ══════════════════════════════════════════ */
-    #page-home #advise { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
-    #page-home #advise .advise-header { flex-shrink: 0; }
-    #page-home #advise .advise-grid { flex: 1; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-    #page-home #advise .advise-cell { overflow: hidden; height: auto; }
-    .home-blog-preview { height: 100vh; overflow: hidden; display: flex; flex-direction: column; padding: 32px 60px; box-sizing: border-box; border-top: 1px solid var(--border); }
-    .home-blog-preview > div:first-child { flex-shrink: 0; margin-bottom: 20px; }
-    .home-blog-preview > div:last-child { flex: 1; overflow: hidden; }
-    .home-blog-preview .blog-card { height: 100%; overflow: hidden; }
-    #page-home .advisors { height: 100vh; overflow: hidden; display: flex; flex-direction: column; box-sizing: border-box; }
-    #page-home .advisors-grid { flex: 1; overflow: hidden; }
-    #page-home .advisor-card { height: 100%; overflow: hidden; }
-    #page-home .process { height: 100vh; display: flex; flex-direction: column; justify-content: center; }
-    #page-home .decisions { height: 100vh; display: flex; align-items: center; justify-content: center; }
-
-    /* ══════════════════════════════════════════
-       ABOUT PAGE STYLES
-    ══════════════════════════════════════════ */
-    .about-hero {
-      padding-top: 70px; height: calc(100vh - 92px);
-      display: flex; flex-direction: column; justify-content: flex-end;
-      position: relative; overflow: hidden;
-      background: linear-gradient(145.97deg, rgb(216,200,152) 0%, rgb(184,154,88) 30%, rgb(140,104,48) 60%, rgb(82,46,14) 100%);
-    }
-    .about-hero-img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
-      mix-blend-mode: luminosity; opacity: 0.6;
-    }
-    .about-hero::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(20,10,2,0.2) 0%, rgba(20,10,2,0.72) 100%);
-      pointer-events: none;
-    }
-    .page-hero-content { position: relative; z-index: 1; padding: 0 100px 72px; }
-    .page-hero-eyebrow { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
-    .page-hero-eyebrow-line { width: 32px; height: 1px; background: rgba(196,176,138,0.6); }
-    .page-hero-eyebrow-text {
-      font-family: 'Jost', sans-serif; font-size: 9.9px; font-weight: 500; font-style: italic;
-      letter-spacing: 2.78px; text-transform: uppercase; color: #c9b98a;
-    }
-    .page-hero-h1 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(40px, 4.4vw, 84px);
-      font-weight: 700; font-style: italic; line-height: 0.96; letter-spacing: -0.025em; color: rgba(244,237,216,0.94);
-    }
-    .page-hero-script {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(52px, 7vw, 130px);
-      font-weight: 400; line-height: 1.3; color: #c9b98a; display: block;
-    }
-    .page-hero-sub {
-      font-family: 'EB Garamond', serif; font-size: clamp(16px, 1.2vw, 20px); font-style: italic;
-      color: rgba(244,237,216,0.55); margin-top: 20px; max-width: 640px;
-    }
-
-    .intro-band {
-      background: var(--dark); padding: 0 60px; height: 92px;
-      display: grid; grid-template-columns: 1fr 1px 1fr; gap: 60px; align-items: center; overflow: hidden;
-    }
-    .intro-band-div { background: rgba(196,176,138,0.18); height: 100%; min-height: 60px; }
-    .intro-band-stat { text-align: center; }
-    .intro-band-num {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(24px, 2.2vw, 36px);
-      font-weight: 700; font-style: italic; color: #c9b98a;
-      letter-spacing: -0.025em; line-height: 1; margin-bottom: 10px;
-    }
-    .intro-band-label {
-      font-family: 'Jost', sans-serif; font-size: 9.3px;
-      letter-spacing: 2.6px; text-transform: uppercase; color: rgba(201,185,138,0.5);
-    }
-
-    .story { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); height: 100vh; overflow: hidden; }
-    .story-content { padding: clamp(44px, 3.8vw, 68px) clamp(52px, 5vw, 88px); display: flex; flex-direction: column; justify-content: center; height: 100%; overflow: hidden; }
-    .story-h2 {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(28px, 3.2vw, 58px);
-      font-weight: 700; font-style: italic; line-height: 1.05; letter-spacing: -0.025em; color: var(--dark); margin-bottom: 4px;
-    }
-    .story-h2-script {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(32px, 3.6vw, 66px);
-      color: var(--rust); line-height: 1.1; display: block;
-    }
-    .story-body { font-family: 'EB Garamond', serif; font-size: clamp(15px, 1.2vw, 20px); line-height: 1.8; color: var(--body-color); max-width: 580px; }
-    .story-img {
-      position: relative; overflow: hidden; height: 100%;
-      background: linear-gradient(160deg, rgb(216,200,152) 0%, rgb(140,104,48) 60%, rgb(82,46,14) 100%);
-    }
-    .story-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-    .founder-section { border-top: 1px solid var(--border); height: 104px; overflow: hidden; }
-    .founder-header { padding: 14px 60px 0; text-align: center; }
-    .founder-section-eyebrow {
-      font-family: 'Jost', sans-serif; font-size: 9.3px;
-      letter-spacing: 2.6px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
-    }
-    .founder-section-h2 { display: flex; align-items: baseline; justify-content: center; gap: 8px; }
-    .founder-section-h2-serif {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(22px, 2vw, 34px);
-      font-weight: 700; font-style: italic; color: var(--dark); letter-spacing: -0.02em;
-    }
-    .founder-section-h2-script {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(28px, 2.6vw, 46px); color: var(--rust); line-height: 1;
-    }
-
-    .founder-card {
-      display: grid; grid-template-columns: 50% 50%;
-      height: calc(100vh - 104px); border-top: 1px solid var(--border); margin-top: 0; overflow: hidden;
-    }
-    .founder-card.reverse { grid-template-columns: 50% 50%; border-top: 1px solid var(--border); height: 100vh; }
-    .founder-card-photo {
-      position: relative; overflow: hidden;
-      background: linear-gradient(160deg, rgb(216,200,152) 0%, rgb(140,104,48) 60%, rgb(82,46,14) 100%);
-    }
-    .founder-card.reverse .founder-card-photo { order: 2; }
-    .founder-card.reverse .founder-card-body { order: 1; }
-    .founder-card-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
-    .founder-card-photo-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(20,10,2,0.55) 0%, transparent 55%); pointer-events: none;
-    }
-    .founder-card-photo-badge { position: absolute; bottom: 40px; left: 44px; }
-    .founder-card.reverse .founder-card-photo-badge { left: auto; right: 44px; text-align: right; }
-    .founder-card-photo-name {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(32px, 2.6vw, 52px);
-      font-weight: 700; font-style: italic; color: rgba(244,237,216,0.92); letter-spacing: -0.02em; line-height: 1;
-    }
-    .founder-card-photo-role { font-family: 'Pinyon Script', cursive; font-size: clamp(26px, 2.2vw, 40px); color: #c9b98a; display: block; margin-top: 6px; }
-    .founder-card-body {
-      padding: clamp(32px, 3.2vw, 56px) clamp(56px, 6vw, 104px); display: flex; flex-direction: column; justify-content: center; overflow: hidden;
-      border-left: 1px solid var(--border);
-    }
-    .founder-card.reverse .founder-card-body { border-left: none; border-right: 1px solid var(--border); }
-    .founder-pos-tag {
-      font-family: 'Jost', sans-serif; font-size: 10px;
-      letter-spacing: 2.4px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
-    }
-    .founder-name-heading {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(28px, 3vw, 56px);
-      font-weight: 700; font-style: italic; letter-spacing: -0.02em; color: var(--dark); line-height: 1; margin-bottom: 10px;
-    }
-    .founder-script-title {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(22px, 2.2vw, 42px); color: var(--rust); display: block; margin-bottom: 18px;
-    }
-    .founder-bio-lead {
-      font-family: 'EB Garamond', serif; font-size: clamp(15px, 1.25vw, 21px); font-weight: 500; font-style: italic;
-      line-height: 1.65; color: var(--dark); margin-bottom: 16px; max-width: 620px;
-    }
-    .founder-bio-body {
-      font-family: 'EB Garamond', serif; font-size: clamp(13px, 0.95vw, 16px);
-      line-height: 1.75; color: var(--body-color); max-width: 620px; margin-bottom: 10px;
-    }
-    .founder-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
-    .founder-tag {
-      font-family: 'Jost', sans-serif; font-size: 8.8px; font-weight: 500;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
-      border: 1px solid var(--gold-border); padding: 7px 16px; border-radius: 0;
-    }
-
-    .founder-achievements { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); height: 100vh; overflow: hidden; }
-    .achievement-cell {
-      background: var(--gold-light); display: flex; flex-direction: column; justify-content: center; padding: 44px 60px;
-      transition: background 0.3s; position: relative; overflow: hidden;
-    }
-    .achievement-cell::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: var(--rust); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
-    }
-    .achievement-cell:hover { background: var(--bg); }
-    .achievement-cell:hover::after { transform: scaleX(1); }
-    .achievement-num {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(28px, 2.4vw, 44px);
-      font-weight: 700; font-style: italic; color: var(--dark); line-height: 1; margin-bottom: 8px; letter-spacing: -0.02em;
-    }
-    .achievement-title {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(16px, 1.2vw, 22px);
-      font-weight: 400; font-style: italic; color: var(--dark); margin-bottom: 10px;
-    }
-    .achievement-body { font-family: 'EB Garamond', serif; font-size: clamp(14px, 1.05vw, 17px); line-height: 1.75; color: var(--body-color); max-width: 500px; }
-
-    .founder-quote {
-      background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      height: 140px; display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden;
-    }
-    .founder-quote::before {
-      content: '\201C'; position: absolute; top: -40px; left: 50%; transform: translateX(-50%);
-      font-family: 'Libre Baskerville', serif; font-size: 280px; line-height: 1;
-      color: rgba(196,176,138,0.15); pointer-events: none;
-    }
-    .founder-quote-inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
-    .founder-quote-text {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(1.1rem, 1.4vw, 1.5rem);
-      color: var(--rust); line-height: 1.35; display: block; margin-bottom: 8px;
-    }
-    .founder-quote-attr {
-      font-family: 'Jost', sans-serif; font-size: 9.3px;
-      letter-spacing: 0.3em; text-transform: uppercase; color: var(--body-color); opacity: 0.6;
-    }
-
-    .vision { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--border); height: 100vh; overflow: hidden; }
-    .vision-content { padding: clamp(44px, 3.8vw, 68px) clamp(52px, 5vw, 88px); display: flex; flex-direction: column; justify-content: center; height: 100%; overflow: hidden; }
-    .vision-h2 {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(32px, 3.2vw, 58px);
-      font-weight: 700; font-style: italic; line-height: 1.05; letter-spacing: -0.025em; color: var(--dark); margin-bottom: 4px;
-    }
-    .vision-h2-script {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(38px, 4vw, 72px);
-      color: var(--rust); line-height: 1.1; display: block;
-    }
-    .vision-body { font-family: 'EB Garamond', serif; font-size: clamp(15px, 1.2vw, 20px); line-height: 1.8; color: var(--body-color); max-width: 560px; margin-bottom: 18px; }
-    .vision-grid { background: var(--bg-alt); display: grid; grid-template-rows: 1fr 1fr; height: 100%; }
-    .vision-cell { padding: clamp(28px, 3.5vw, 60px) clamp(40px, 4vw, 72px); border-bottom: 1px solid var(--border); transition: background 0.3s; }
-    .vision-cell:last-child { border-bottom: none; }
-    .vision-cell:hover { background: var(--bg); }
-    .vision-cell-label {
-      font-family: 'Jost', sans-serif; font-size: 9.3px;
-      letter-spacing: 2.6px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
-    }
-    .vision-cell-text { font-family: 'EB Garamond', serif; font-size: clamp(15px, 1.1vw, 18px); line-height: 1.8; color: var(--body-color); }
-
-    .about-cta {
-      position: relative; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden;
-      border-top: 1px solid var(--border);
-    }
-    .about-cta-ring {
-      position: absolute; border-radius: 50%;
-      border: 1px solid rgba(196,176,138,0.2);
-      top: 50%; left: 50%; transform: translate(-50%, -50%); pointer-events: none;
-    }
-    .about-cta-ring-lg { width: min(820px, 76vh); height: min(820px, 76vh); }
-    .about-cta-ring-sm { width: min(480px, 44vh); height: min(480px, 44vh); }
-    .about-cta-inner { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-    .about-cta-h2 {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(40px, 4vw, 72px);
-      font-weight: 700; font-style: italic; letter-spacing: -0.025em; color: var(--dark); line-height: 0.96;
-    }
-    .about-cta-script {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(48px, 5vw, 88px);
-      color: var(--rust); line-height: 1.35; display: block;
-    }
-    .about-cta-body {
-      font-family: 'EB Garamond', serif; font-size: clamp(16px, 1.1vw, 19px); line-height: 1.8;
-      color: var(--body-color); max-width: 580px; margin: 24px auto 36px;
-    }
-    .about-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-
-    /* ══════════════════════════════════════════
-       CONTACT PAGE STYLES
-    ══════════════════════════════════════════ */
-    .contact-hero {
-      padding-top: 70px; background: var(--dark);
-      display: flex; flex-direction: column; justify-content: flex-end; min-height: 30vh;
-      position: relative; overflow: hidden;
-    }
-    .contact-hero::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(255,255,255,0.018) 20px, rgba(255,255,255,0.018) 21px);
-      pointer-events: none;
-    }
-    .contact-hero-ornament {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 560px; height: 560px; border-radius: 50%;
-      border: 1px solid rgba(196,176,138,0.08); pointer-events: none;
-    }
-    .contact-hero-ornament-sm {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 360px; height: 360px; border-radius: 50%;
-      border: 1px solid rgba(196,176,138,0.06); pointer-events: none;
-    }
-    .contact-hero-h1 {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(30px, 3.4vw, 58px);
-      font-weight: 700; font-style: italic; line-height: 0.96; letter-spacing: -0.025em;
-      color: rgba(244,237,216,0.92);
-    }
-    .contact-hero-script {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(36px, 4.4vw, 76px);
-      font-weight: 400; line-height: 1.3; color: #c9b98a; display: block;
-    }
-    .contact-hero-sub {
-      font-family: 'EB Garamond', serif; font-size: 17px; font-style: italic;
-      color: rgba(244,237,216,0.4); margin-top: 16px; max-width: 480px;
-    }
-
-    .contact-wrap { display: grid; grid-template-columns: 1fr 1.3fr; border-top: 1px solid var(--border); }
-    .contact-info {
-      padding: 52px 52px; background: var(--bg-alt);
-      border-right: 1px solid var(--border); display: flex; flex-direction: column;
-    }
-    .contact-info-h2 {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(24px, 2vw, 34px);
-      font-weight: 700; font-style: italic; letter-spacing: -0.025em; color: var(--dark); line-height: 1.05;
-    }
-    .contact-info-h2-script {
-      font-family: 'Pinyon Script', cursive; font-size: clamp(28px, 2.5vw, 44px);
-      color: var(--rust); line-height: 1.2; display: block;
-    }
-    .contact-info-body {
-      font-family: 'EB Garamond', serif; font-size: 15px; line-height: 1.8;
-      color: var(--body-color); margin-bottom: 28px;
-    }
-    .contact-detail-group { display: flex; flex-direction: column; gap: 18px; flex: 1; }
-    .contact-detail { border-top: 1px solid var(--border); padding-top: 16px; }
-    .contact-detail-label {
-      font-family: 'Jost', sans-serif; font-size: 8.8px; font-weight: 500;
-      letter-spacing: 2.6px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
-    }
-    .contact-detail-value { font-family: 'EB Garamond', serif; font-size: 16px; color: var(--dark); line-height: 1.6; }
-    .contact-detail-value a { color: inherit; text-decoration: none; transition: color 0.2s; }
-    .contact-detail-value a:hover { color: var(--rust); }
-    .contact-founders { margin-top: 24px; border-top: 1px solid var(--border); padding-top: 20px; }
-    .contact-founders-label {
-      font-family: 'Jost', sans-serif; font-size: 8.8px; font-weight: 500;
-      letter-spacing: 2.6px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
-    }
-    .contact-founder-avatars { display: flex; gap: 16px; align-items: center; }
-    .contact-founder-avatar { display: flex; align-items: center; gap: 12px; }
-    .contact-founder-img {
-      width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: top center;
-      border: 2px solid var(--gold-border);
-    }
-    .contact-founder-name { font-family: 'Libre Baskerville', serif; font-size: 15px; font-style: italic; color: var(--dark); line-height: 1.2; }
-    .contact-founder-role {
-      font-family: 'Jost', sans-serif; font-size: 8.4px;
-      letter-spacing: 1.8px; text-transform: uppercase; color: var(--body-color); opacity: 0.7;
-    }
-
-    .contact-form-wrap { padding: 52px 60px; }
-    .contact-form-eyebrow {
-      font-family: 'Jost', sans-serif; font-size: 9.3px;
-      letter-spacing: 2.6px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
-    }
-    .contact-form-h2 {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(22px, 1.9vw, 32px);
-      font-weight: 700; font-style: italic; letter-spacing: -0.02em; color: var(--dark); line-height: 1.1; margin-bottom: 8px;
-    }
-    .contact-form-sub {
-      font-family: 'EB Garamond', serif; font-size: 14.5px; font-style: italic;
-      color: var(--body-color); margin-bottom: 28px; line-height: 1.6;
-    }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
-    .form-group.full { grid-column: 1 / -1; }
-    .form-label {
-      font-family: 'Jost', sans-serif; font-size: 8.8px; font-weight: 500;
-      letter-spacing: 2.4px; text-transform: uppercase; color: var(--body-color);
-    }
-    .form-label .req { color: var(--rust); margin-left: 2px; }
-    .form-input, .form-select, .form-textarea {
-      font-family: 'EB Garamond', serif; font-size: 15px; color: var(--dark);
-      background: var(--bg); border: 1px solid var(--gold-border); padding: 11px 16px;
-      outline: none; transition: border-color 0.2s, background 0.2s; width: 100%;
-      -webkit-appearance: none; appearance: none; border-radius: 0;
-    }
-    .form-input::placeholder, .form-textarea::placeholder { color: rgba(122,92,50,0.35); font-style: italic; }
-    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--rust); background: #faf5ea; }
-    .form-select {
-      cursor: pointer;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a8905c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px;
-    }
-    .form-select option { color: var(--dark); background: var(--cream); }
-    .form-textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
-    .form-radio-group { display: flex; gap: 12px; flex-wrap: wrap; }
-    .form-radio-label { cursor: pointer; display: flex; align-items: center; gap: 8px; }
-    .form-radio-label input[type="radio"] { width: 16px; height: 16px; accent-color: var(--rust); cursor: pointer; flex-shrink: 0; }
-    .form-radio-text { font-family: 'EB Garamond', serif; font-size: 15px; color: var(--body-color); }
-    .form-section-div { height: 1px; background: var(--border); margin: 20px 0; }
-    .form-section-label {
-      font-family: 'Jost', sans-serif; font-size: 8.8px; font-weight: 500;
-      letter-spacing: 2.4px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
-    }
-    .form-submit-row { display: flex; align-items: center; gap: 24px; margin-top: 24px; }
-    .btn-submit {
-      font-family: 'Jost', sans-serif; font-size: 9.9px; font-weight: 500;
-      letter-spacing: 2.2px; text-transform: uppercase; color: var(--cream);
-      background: var(--dark); padding: 14px 40px;
-      border: none; border-radius: 0; cursor: pointer; transition: background 0.25s; display: inline-block;
-    }
-    .btn-submit:hover { background: var(--rust); }
-    .form-disclaimer {
-      font-family: 'EB Garamond', serif; font-size: 13px; font-style: italic;
-      color: var(--body-color); opacity: 0.6; line-height: 1.6;
-    }
-    .form-success { display: none; text-align: center; padding: 60px 0; }
-    .form-success-icon {
-      width: 64px; height: 64px; border: 2px solid var(--gold-border); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 28px;
-    }
-    .form-success-icon::after { content: '✓'; font-family: 'Jost', sans-serif; font-size: 24px; color: var(--gold); }
-    .form-success-h3 { font-family: 'Libre Baskerville', serif; font-size: 28px; font-style: italic; color: var(--dark); margin-bottom: 12px; }
-    .form-success-body { font-family: 'EB Garamond', serif; font-size: 16px; color: var(--body-color); line-height: 1.8; }
-
-    .contact-quote-stripe {
-      position: relative; background: var(--rust); padding: 44px 120px; overflow: hidden; text-align: center;
-    }
-    .contact-quote-stripe::before {
-      content: '\201C'; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
-      font-family: 'Libre Baskerville', serif; font-size: 360px; line-height: 1;
-      color: rgba(0,0,0,0.07); pointer-events: none;
-    }
-    .contact-quote-stripe::after {
-      content: ''; position: absolute; inset: 0;
-      background-image: repeating-linear-gradient(0deg, transparent, transparent 18px, rgba(255,255,255,0.025) 18px, rgba(255,255,255,0.025) 19px);
-      pointer-events: none;
-    }
-
-    /* ══════════════════════════════════════════
-       BLOG PAGE STYLES
-    ══════════════════════════════════════════ */
-    .blog-hero {
-      padding-top: 70px;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      min-height: 42vh; position: relative; overflow: hidden;
-    }
-    .blog-hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-    }
-    .blog-hero-bg img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
-      filter: sepia(0.4) brightness(0.5) contrast(1.05);
-    }
-    .blog-hero-overlay {
-      position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(to bottom, rgba(20,10,2,0.25) 0%, rgba(20,10,2,0.75) 100%);
-      pointer-events: none;
-    }
-    .blog-hero .page-hero-content {
-      position: relative; z-index: 2; padding: 56px 60px 52px;
-    }
-    .blog-hero::before {
-      content: ''; position: absolute; inset: 0; z-index: 1;
-      background-image: repeating-linear-gradient(0deg, transparent, transparent 20px, rgba(255,255,255,0.018) 20px, rgba(255,255,255,0.018) 21px);
-      pointer-events: none;
-    }
-    .blog-hero-ornament {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 560px; height: 560px; border-radius: 50%;
-      border: 1px solid rgba(196,176,138,0.08); pointer-events: none;
-    }
-    .blog-hero-ornament-sm {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 360px; height: 360px; border-radius: 50%;
-      border: 1px solid rgba(196,176,138,0.06); pointer-events: none;
-    }
-
-    .blog-grid-section { padding: 52px 60px; border-top: 1px solid var(--border); }
-    .blog-grid-header { margin-bottom: 36px; }
-    .blog-filter-row {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px;
-    }
-    .blog-filter-btn {
-      font-family: 'Jost', sans-serif; font-size: 8.8px; font-weight: 500;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--body-color);
-      border: 1px solid var(--border); padding: 8px 18px;
-      background: transparent; border-radius: 0; cursor: pointer; transition: all 0.2s;
-    }
-    .blog-filter-btn:hover, .blog-filter-btn.active {
-      background: var(--dark); color: var(--cream); border-color: var(--dark);
-    }
-    .blog-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-      background: var(--border);
-    }
-    .blog-card {
-      background: var(--bg); display: flex; flex-direction: column;
-      transition: background 0.3s; position: relative; overflow: hidden;
-      cursor: pointer;
-    }
-    .blog-card:hover { background: var(--bg-alt); }
-    .blog-card::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
-      background: var(--rust); transform: scaleX(0); transform-origin: left; transition: transform 0.35s ease;
-    }
-    .blog-card:hover::after { transform: scaleX(1); }
-    .blog-card-img {
-      width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
-      filter: sepia(0.15) saturate(0.95);
-      transition: filter 0.3s, transform 0.4s;
-      overflow: hidden;
-    }
-    .blog-card:hover .blog-card-img { filter: sepia(0) saturate(1); }
-    .blog-card-img-wrap { overflow: hidden; }
-    .blog-card:hover .blog-card-img-wrap img { transform: scale(1.03); }
-    .blog-card-body { padding: clamp(22px, 2.2vw, 38px) clamp(24px, 2.5vw, 44px); display: flex; flex-direction: column; flex: 1; }
-    .blog-card-cat {
-      font-family: 'Jost', sans-serif; font-size: clamp(8px, 0.6vw, 10px); font-weight: 500;
-      letter-spacing: 2.2px; text-transform: uppercase; color: var(--rust);
-      margin-bottom: 12px;
-    }
-    .blog-card-title {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(17px, 1.5vw, 26px);
-      font-weight: 400; font-style: italic; color: var(--dark);
-      letter-spacing: -0.02em; line-height: 1.2; margin-bottom: 14px;
-    }
-    .blog-card-excerpt {
-      font-family: 'EB Garamond', serif; font-size: clamp(14px, 1vw, 17px); line-height: 1.78;
-      color: var(--body-color); flex: 1; margin-bottom: 20px;
-    }
-    .blog-card-meta {
-      display: flex; align-items: center; justify-content: space-between;
-      border-top: 1px solid var(--border); padding-top: 16px; margin-top: auto;
-    }
-    .blog-card-author {
-      font-family: 'Jost', sans-serif; font-size: 8.8px;
-      letter-spacing: 1.8px; text-transform: uppercase; color: var(--body-color);
-    }
-    .blog-card-date {
-      font-family: 'EB Garamond', serif; font-size: 13px; font-style: italic;
-      color: var(--body-color); opacity: 0.6;
-    }
-    .blog-card-readmore {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'Jost', sans-serif; font-size: 8.8px; font-weight: 500;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--rust); cursor: pointer; margin-top: 14px;
-      transition: gap 0.2s, color 0.2s;
-    }
-    .blog-card-readmore:hover { gap: 14px; color: var(--dark); }
-    .blog-card-featured {
-      grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr;
-      background: var(--bg);
-    }
-    .blog-card-featured .blog-card-img-wrap { height: 100%; min-height: 340px; }
-    .blog-card-featured .blog-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .blog-card-featured .blog-card-body { padding: clamp(40px, 4vw, 72px) clamp(44px, 4.5vw, 80px); justify-content: center; }
-    .blog-card-featured .blog-card-title { font-size: clamp(22px, 2.4vw, 42px); }
-
-    /* Blog Detail Page */
-    .blog-detail-hero {
-      padding-top: 70px; min-height: 54vh;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      position: relative; overflow: hidden;
-      background: linear-gradient(145.97deg, rgb(216,200,152) 0%, rgb(184,154,88) 30%, rgb(140,104,48) 60%, rgb(82,46,14) 100%);
-    }
-    .blog-detail-hero-img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; mix-blend-mode: luminosity; opacity: 0.5;
-    }
-    .blog-detail-hero::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(20,10,2,0.1) 0%, rgba(20,10,2,0.78) 100%);
-      pointer-events: none;
-    }
-    .blog-detail-content { max-width: 760px; margin: 0 auto; padding: 60px 60px 80px; }
-    .blog-detail-back {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'Jost', sans-serif; font-size: 8.8px; font-weight: 500;
-      letter-spacing: 2px; text-transform: uppercase;
-      color: var(--gold); cursor: pointer; margin-bottom: 36px;
-      transition: gap 0.2s, color 0.2s;
-    }
-    .blog-detail-back:hover { gap: 14px; color: var(--rust); }
-    .blog-detail-cat {
-      font-family: 'Jost', sans-serif; font-size: 8.8px; font-weight: 500;
-      letter-spacing: 2.2px; text-transform: uppercase; color: var(--rust);
-      margin-bottom: 14px;
-    }
-    .blog-detail-title {
-      font-family: 'Libre Baskerville', serif; font-size: clamp(28px, 2.8vw, 48px);
-      font-weight: 700; font-style: italic; color: var(--dark);
-      letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 24px;
-    }
-    .blog-detail-meta {
-      display: flex; align-items: center; gap: 24px;
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      padding: 16px 0; margin-bottom: 40px;
-    }
-    .blog-detail-author-img {
-      width: 44px; height: 44px; border-radius: 50%;
-      object-fit: cover; object-position: top; border: 2px solid var(--gold-border);
-    }
-    .blog-detail-author-name {
-      font-family: 'Libre Baskerville', serif; font-size: 15px; font-style: italic; color: var(--dark);
-    }
-    .blog-detail-author-role {
-      font-family: 'Jost', sans-serif; font-size: 8.4px; letter-spacing: 1.8px;
-      text-transform: uppercase; color: var(--body-color); opacity: 0.7; margin-top: 3px;
-    }
-    .blog-detail-date {
-      font-family: 'EB Garamond', serif; font-size: 14px; font-style: italic;
-      color: var(--body-color); opacity: 0.6; margin-left: auto;
-    }
-    .blog-detail-body { font-family: 'EB Garamond', serif; font-size: 17px; line-height: 1.85; color: var(--body-color); }
-    .blog-detail-body p { margin-bottom: 24px; }
-    .blog-detail-body h2 {
-      font-family: 'Libre Baskerville', serif; font-size: 26px;
-      font-weight: 700; font-style: italic; color: var(--dark);
-      margin: 36px 0 18px; letter-spacing: -0.02em;
-    }
-    .blog-detail-body h3 {
-      font-family: 'Libre Baskerville', serif; font-size: 20px;
-      font-weight: 400; font-style: italic; color: var(--dark);
-      margin: 28px 0 14px;
-    }
-    .blog-detail-body blockquote {
-      border-left: 3px solid var(--rust); padding: 4px 0 4px 28px;
-      margin: 32px 0; font-style: italic; color: var(--dark);
-      font-size: 18px; line-height: 1.7;
-    }
-    .blog-detail-related { padding: 52px 60px; border-top: 1px solid var(--border); background: var(--bg-alt); }
-    .blog-detail-related-title {
-      font-family: 'Libre Baskerville', serif; font-size: 28px; font-style: italic;
-      color: var(--dark); margin-bottom: 32px; text-align: center;
-    }
-    .blog-detail-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
-
-    /* ══════════════════════════════════════════
-       RESPONSIVE
-    ══════════════════════════════════════════ */
+    /* ═══════ DESKTOP RESPONSIVE ═══════ */
     @media (max-width: 1200px) {
-      .process-cols { grid-template-columns: repeat(3, 1fr); max-width: 100%; padding: 0 40px; }
-      .advisor-photo { flex: 0 0 40%; }
-      .advisor-info { padding: 36px 40px; }
+      .advisor-photo { flex: 0 0 200px; }
     }
+
+    /* ═══════ TABLET ═══════ */
     @media (max-width: 960px) {
       .nav { padding: 0 28px; height: 60px; }
       .nav-list { display: none; }
       .nav-hamburger { display: block; }
-      .nav-cta { display: none; }
-      /* Home */
       .hero { grid-template-columns: 1fr; padding-top: 60px; min-height: auto; }
       .hero-left { padding: 56px 28px 52px; order: 2; }
       .hero-right { height: 50vh; min-height: 340px; order: 1; }
       .partners { padding: 0 28px; }
-      .partners-logos { gap: 28px; overflow-x: auto; }
+      .partners-logos { gap: 28px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
       .stats { flex-wrap: wrap; }
       .stat { flex: 1 1 50%; padding: 36px 28px; }
       .stat:nth-child(odd) { border-right: 1px solid var(--border); }
@@ -1181,1103 +762,287 @@
       .philosophy-img { min-height: 360px; }
       .philosophy-content { padding: 52px 28px; }
       .advise-header { padding: 44px 28px; }
-      .advise-grid { grid-template-columns: 1fr; }
-      .advise-cell { padding: 48px 28px; border-right: none !important; border-bottom: 1px solid var(--border) !important; }
+      .advise-grid { grid-template-columns: 1fr; min-width: 0; }
+      .advise-cell { padding: 48px 28px; min-width: 0; border-right: none !important; border-bottom: 1px solid var(--border) !important; }
       .advise-cell:last-child { border-bottom: none !important; }
+      .advise-body { max-width: 100%; }
       .quote-stripe { padding: 64px 28px; }
       .advisors { padding: 56px 28px; }
       .advisors-grid { grid-template-columns: 1fr; }
       .advisor-card { flex-direction: column; }
       .advisor-photo { flex: none; height: 320px; }
       .advisor-photo img { min-height: 320px; }
-      .advisor-info { padding: 36px 28px !important; }
-      .process { padding: 56px 28px; }
-      .process-cols { grid-template-columns: 1fr; max-width: 400px; padding: 0; }
-      .process-col { border-left: none !important; border-bottom: 1px solid var(--border); padding: 44px 0; }
-      .process-col:last-child { border-bottom: none; }
+      .advisor-info { padding: 36px 28px; }
       .decisions { padding: 80px 28px; }
       .decisions-ring-lg { width: 90vw; height: 90vw; }
       .decisions-ring-sm { width: 60vw; height: 60vw; }
-      /* About */
-      .about-hero { height: auto; min-height: 50vh; }
-      .intro-band { height: auto; padding: 20px 28px; }
-      .story { height: auto; overflow: visible; }
-      .story-content { height: auto; }
-      .story-img { height: auto; }
-      .founder-section { height: auto; }
-      .founder-card { height: auto; }
-      .founder-achievements { height: auto; }
-      .founder-quote { height: auto; padding: 20px 28px; }
-      .vision { height: auto; overflow: visible; }
-      .vision-content { height: auto; }
-      .vision-grid { height: auto; }
-      .about-cta { height: auto; padding: 60px 28px; }
-      #page-home #advise { height: auto; }
-      #page-home #advise .advise-cell { height: auto; }
-      .home-blog-preview { height: auto; }
-      #page-home .advisors { height: auto; }
-      #page-home .process { height: auto; }
-      #page-home .decisions { height: auto; }
-      #page-home .philosophy { height: auto; overflow: visible; }
-      #page-home .philosophy-img { height: auto; }
-      .page-hero-content { padding: 0 28px 52px; }
-      .intro-band { padding: 40px 28px; grid-template-columns: 1fr; }
-      .intro-band-div { display: none; }
-      .story { grid-template-columns: 1fr; }
-      .story-img { min-height: 340px; order: -1; }
-      .story-content { padding: 52px 28px; }
-      .founder-card { grid-template-columns: 1fr; min-height: auto; }
-      .founder-card.reverse { grid-template-columns: 1fr; }
-      .founder-card.reverse .founder-card-photo { order: 1; }
-      .founder-card.reverse .founder-card-body { order: 2; }
-      .founder-card-photo { min-height: 420px; }
-      .founder-card-body { padding: 52px 28px; border-left: none !important; border-right: none !important; border-top: 1px solid var(--border); }
-      .founder-achievements { grid-template-columns: 1fr; }
-      .achievement-cell { padding: 44px 28px; }
-      .founder-quote { padding: 56px 28px; }
-      .vision { grid-template-columns: 1fr; }
-      .vision-content { padding: 52px 28px; }
-      .vision-cell { padding: 40px 28px; }
-      .about-cta { padding: 80px 28px; }
-      .about-cta-ring-lg { width: 90vw; height: 90vw; }
-      .about-cta-ring-sm { width: 60vw; height: 60vw; }
-      .founder-header { padding: 60px 28px 0; }
-      /* Blog */
-      .blog-hero { min-height: 38vh; }
-      .blog-hero .page-hero-content { padding: 40px 28px 44px; }
-      .blog-grid-section { padding: 44px 28px; }
-      .blog-grid { grid-template-columns: 1fr 1fr; }
-      .blog-card-featured { grid-template-columns: 1fr; }
-      .blog-card-featured .blog-card-img-wrap { min-height: 260px; }
-      .blog-card-featured .blog-card-body { padding: 36px 28px; }
-      .blog-detail-content { padding: 48px 28px 60px; }
-      .blog-detail-related { padding: 44px 28px; }
-      .blog-detail-related-grid { grid-template-columns: 1fr; }
-      /* Contact */
-      .contact-wrap { grid-template-columns: 1fr; }
-      .contact-info { padding: 56px 28px; border-right: none; border-bottom: 1px solid var(--border); }
-      .contact-form-wrap { padding: 56px 28px; }
-      .form-row { grid-template-columns: 1fr; }
-      .form-submit-row { flex-direction: column; align-items: stretch; }
-      .btn-submit { text-align: center; }
-      .contact-quote-stripe { padding: 60px 28px; }
-      /* Footer */
-      .site-footer { padding: 48px 28px 32px; }
+      footer { padding: 48px 28px 32px; }
       .footer-top { grid-template-columns: 1fr; gap: 36px; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
     }
+
+    /* ═══════ MOBILE ═══════ */
     @media (max-width: 540px) {
-      .hero-left { padding: 40px 24px; }
+      .hero-left { padding: 40px 24px 40px; }
       .hero-right { height: 44vh; min-height: 280px; }
       .hero-h1-main { font-size: 38px; }
       .hero-h1-script { font-size: 52px; }
+      .hero-body { font-size: 15px; }
       .partners { height: auto; padding: 14px 24px; gap: 16px; flex-wrap: wrap; }
       .partners-logos { gap: 20px; }
-      .partners-logos img { height: 18px; }
+      .partners-logos img { width: 80px; height: 18px; }
       .stat { flex: 1 1 100%; border-right: none !important; }
+      .stat-num { font-size: 36px; }
       .philosophy-img { min-height: 280px; }
       .philosophy-content { padding: 40px 24px; }
+      .philosophy-h2 { font-size: 34px; }
+      .philosophy-h2-script { font-size: 40px; }
+      #advise { overflow-x: hidden; }
       .advise-header { padding: 36px 24px; }
-      .advise-cell { padding: 36px 24px; }
-      .quote-stripe { padding: 44px 24px; }
+      .advise-h2 { font-size: 32px; letter-spacing: 4px; }
+      .advise-grid { min-width: 0; }
+      .advise-cell { padding: 44px 24px; min-width: 0; }
+      .advise-body { max-width: 100%; font-size: 16px; line-height: 1.8; }
+      .advise-num { font-size: 28px; margin-bottom: 20px; }
+      .advise-title { font-size: 22px; line-height: 1.25; margin-bottom: 16px; }
       .quote-text { font-size: 24px; }
       .advisors { padding: 44px 24px; }
+      .advisors-h2-our { font-size: 30px; }
+      .advisors-h2-script { font-size: 40px; }
       .advisor-photo { height: 260px; }
-      .advisor-info { padding: 28px 24px !important; }
+      .advisor-info { padding: 28px 24px; }
+      .advisor-name { font-size: 24px; }
+      .advisor-role { font-size: 22px; }
       .decisions { padding: 64px 24px; }
+      .decisions-body { font-size: 16px; }
+      .decisions-h2-main { font-size: 36px; }
+      .decisions-h2-script { font-size: 42px; }
       .decisions-btns { flex-direction: column; align-items: stretch; }
       .decisions-btns a { text-align: center; }
-      .page-hero-content { padding: 0 24px 44px; }
-      .page-hero-h1 { font-size: 34px; }
-      .page-hero-script { font-size: 40px; }
-      .founder-card-photo { min-height: 340px; }
-      .founder-card-body { padding: 40px 24px; }
-      .founder-card-photo-badge { left: 24px; bottom: 24px; }
-      .founder-card.reverse .founder-card-photo-badge { right: 24px; }
-      .founder-card-photo-name { font-size: 28px; }
-      .achievement-cell { padding: 36px 24px; }
-      .founder-quote { padding: 44px 24px; }
-      .vision-content { padding: 40px 24px; }
-      .vision-cell { padding: 32px 24px; }
-      .about-cta { padding: 64px 24px; }
-      .about-cta-btns { flex-direction: column; align-items: stretch; }
-      .about-cta-btns a { text-align: center; }
-      .contact-info { padding: 44px 24px; }
-      .contact-form-wrap { padding: 44px 24px; }
-      .contact-founder-avatars { flex-direction: column; align-items: flex-start; }
-      .contact-quote-stripe { padding: 44px 24px; }
-      .contact-hero-h1 { font-size: 32px; }
-      .contact-hero-script { font-size: 44px; }
-      .blog-hero .page-hero-content { padding: 32px 24px 40px; }
-      .blog-grid-section { padding: 36px 24px; }
-      .blog-grid { grid-template-columns: 1fr; }
-      .blog-card-body { padding: 24px; }
-      .blog-detail-content { padding: 36px 24px 52px; }
-      .blog-detail-related { padding: 36px 24px; }
-      .site-footer { padding: 40px 24px 28px; }
+      footer { padding: 40px 24px 28px; }
       .footer-tagline { font-size: 18px; }
+      .footer-links a { min-height: 44px; display: flex; align-items: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ═══════ NAV ═══════ -->
-  <nav class="nav" id="mainNav">
-    <a class="nav-logo" data-page="home">Advising.com</a>
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" href="index.html">Advising.com</a>
     <ul class="nav-list">
-      <li><a data-page="home">Home</a></li>
-      <li><a data-page="about">About Us</a></li>
-      <li><a data-page="blog">Blog</a></li>
-      <li><a data-page="home" data-section="philosophy">Philosophy</a></li>
-      <li><a data-page="home" data-section="advisors">Our Advisors</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="index.html#philosophy">Philosophy</a></li>
+      <li><a href="index.html#advisors">Our Advisors</a></li>
     </ul>
-    
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span></button>
+    <a class="nav-cta" href="mailto:hello@advising.com" style="display:none;">Contact Us</a>
+    <button class="nav-hamburger" aria-label="Menu"><span></span></button>
   </nav>
 
-  <!-- ══════════════════════════════════════
-       HOME PAGE
-  ══════════════════════════════════════ -->
-  <div id="page-home" class="page active">
-
-    <section class="hero">
-      <div class="hero-left">
-        <div class="hero-eyebrow">
-          <span class="hero-eyebrow-line"></span>
-          <span class="hero-eyebrow-text">est nyc</span>
-        </div>
-        <h1>
-          <span class="hero-h1-main">Return to the</span>
-          <span class="hero-h1-script">Fundamentals</span>
-        </h1>
-        <p class="hero-body">In an age of artificial intelligence, human expertise, discernment, and judgment remain irreplaceable.</p>
-        <div class="hero-line"></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-line"></span>
+        <span class="hero-eyebrow-text">est nyc</span>
       </div>
-      <div class="hero-right">
-        <img src="https://www.figma.com/api/mcp/asset/7cdc53cd-63b2-4a23-ad53-38251ad0e594" alt="Wall Street" />
-      </div>
-    </section>
+      <h1>
+        <span class="hero-h1-main">Return to the</span>
+        <span class="hero-h1-script">Fundamentals</span>
+      </h1>
+      <p class="hero-body">In an age of artificial intelligence, human expertise, discernment, and judgment remain irreplaceable.</p>
+      <div class="hero-line"></div>
+    </div>
+    <div class="hero-right">
+      <img src="https://www.figma.com/api/mcp/asset/7cdc53cd-63b2-4a23-ad53-38251ad0e594" alt="Wall Street" />
+    </div>
+  </section>
 
-    <div class="partners">
-      <span class="partners-label">Our Partners</span>
-      <div class="partners-div"></div>
-      <div class="partners-logos">
-        <img src="https://www.figma.com/api/mcp/asset/e1830497-caa2-4e35-8e19-850d25824378" alt="Partner" />
-        <img src="https://www.figma.com/api/mcp/asset/f7685be5-86d3-406f-a00a-e8676d2faed1" alt="Partner" />
-        <img src="https://www.figma.com/api/mcp/asset/8eb0c523-21c3-47d4-8f42-b81f9ceea125" alt="Partner" />
-        <img src="https://www.figma.com/api/mcp/asset/495b37f5-5d6e-4510-ba29-3d20ca6f0b60" alt="Partner" />
-        <img src="https://www.figma.com/api/mcp/asset/597bd4c3-7efc-4d64-966d-bdc584c7f6cb" alt="Partner" />
+  <!-- PARTNERS -->
+  <div class="partners">
+    <span class="partners-label">Our Partners</span>
+    <div class="partners-div"></div>
+    <div class="partners-logos">
+      <img src="https://www.figma.com/api/mcp/asset/e1830497-caa2-4e35-8e19-850d25824378" alt="Partner" />
+      <img src="https://www.figma.com/api/mcp/asset/f7685be5-86d3-406f-a00a-e8676d2faed1" alt="Partner" />
+      <img src="https://www.figma.com/api/mcp/asset/8eb0c523-21c3-47d4-8f42-b81f9ceea125" alt="Partner" />
+      <img src="https://www.figma.com/api/mcp/asset/495b37f5-5d6e-4510-ba29-3d20ca6f0b60" alt="Partner" />
+      <img src="https://www.figma.com/api/mcp/asset/597bd4c3-7efc-4d64-966d-bdc584c7f6cb" alt="Partner" />
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">Deals Advised</div>
+      <div class="stat-num">$2B</div>
+      <div class="stat-sub">In Total Value</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Founders Mentored</div>
+      <div class="stat-num">200+</div>
+      <div class="stat-sub">Leaders Placed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Acceptance Rate</div>
+      <div class="stat-num">3%</div>
+      <div class="stat-sub">Selective by Design</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Our Dilty Fee</div>
+      <div class="stat-num">7%</div>
+      <div class="stat-sub">Aligned Incentives</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Private Mandates</div>
+      <div class="stat-num">200+</div>
+      <div class="stat-sub">Discreet Engagements</div>
+    </div>
+  </div>
+
+  <!-- PHILOSOPHY -->
+  <section class="philosophy" id="philosophy">
+    <div class="philosophy-img">
+      <img src="https://www.figma.com/api/mcp/asset/c87bde3c-0713-4e54-956a-0a4795702ecf" alt="The boardroom" />
+      <div class="philosophy-caption">The room that seals a deal.</div>
+    </div>
+    <div class="philosophy-content">
+      <p class="eyebrow">Our Philosophy</p>
+      <div>
+        <div class="philosophy-h2">Palate.<br>Connections.</div>
+        <span class="philosophy-h2-script">The Room.</span>
+      </div>
+      <div class="divider-rule"></div>
+      <p class="philosophy-body">There are things no algorithm can decode. The handshake that seals a billion-dollar deal. The instinct that tells you when to walk away. The network that opens doors money alone cannot. Our advisors have sat in those rooms. They know what happens after the cameras turn off and the press releases go out. This is the education that matters.</p>
+      <a class="btn-block" href="#advisors">Apply as an Advisor</a>
+    </div>
+  </section>
+
+  <!-- WHAT WE ADVISE ON -->
+  <section id="advise">
+    <div class="advise-header">
+      <p class="eyebrow">Expertise</p>
+      <h2 class="advise-h2">What We Advise On</h2>
+    </div>
+    <div class="advise-grid">
+      <div class="advise-cell">
+        <div class="advise-num">01</div>
+        <h3 class="advise-title">Web3 &amp; Crypto</h3>
+        <p class="advise-body">Token economics, DeFi architecture, regulatory navigation, and the deals that built the industry.</p>
+      </div>
+      <div class="advise-cell">
+        <div class="advise-num">02</div>
+        <h3 class="advise-title">Fund Raising</h3>
+        <p class="advise-body">From seed to Series D. The pitch, the terms, the negotiation, and what VCs actually think.</p>
+      </div>
+      <div class="advise-cell">
+        <div class="advise-num">03</div>
+        <h3 class="advise-title">Entrepreneurship</h3>
+        <p class="advise-body">Building from zero. Product-market fit, hiring, culture, and the decisions that define companies.</p>
+      </div>
+      <div class="advise-cell">
+        <div class="advise-num">04</div>
+        <h3 class="advise-title">Deal Making</h3>
+        <p class="advise-body">M&amp;A, partnerships, and strategic alliances. How the biggest deals in the world actually get done.</p>
       </div>
     </div>
+  </section>
 
-    <div class="stats">
-      <div class="stat"><div class="stat-label">Deals Advised</div><div class="stat-num">$2B</div><div class="stat-sub">In Total Value</div></div>
-      <div class="stat"><div class="stat-label">Founders Mentored</div><div class="stat-num">200+</div><div class="stat-sub">Leaders Placed</div></div>
-      <div class="stat"><div class="stat-label">Acceptance Rate</div><div class="stat-num">3%</div><div class="stat-sub">Selective by Design</div></div>
-      <div class="stat"><div class="stat-label">Our Dilty Fee</div><div class="stat-num">7%</div><div class="stat-sub">Aligned Incentives</div></div>
-      <div class="stat"><div class="stat-label">Private Mandates</div><div class="stat-num">200+</div><div class="stat-sub">Discreet Engagements</div></div>
+  <!-- QUOTE STRIPE -->
+  <section class="quote-stripe">
+    <div class="quote-stripe-bg"></div>
+    <div class="quote-stripe-ov"></div>
+    <div class="quote-inner">
+      <span class="quote-text">"The handshake that seals a billion-dollar deal. The instinct that tells you when to walk away."</span>
+      <span class="quote-attr">— Advising.com Philosophy</span>
     </div>
+  </section>
 
-    <section class="philosophy" id="philosophy">
-      <div class="philosophy-img">
-        <img src="https://www.figma.com/api/mcp/asset/c87bde3c-0713-4e54-956a-0a4795702ecf" alt="The boardroom" />
-        <div class="philosophy-caption">The room that seals a deal.</div>
+  <!-- ADVISORS -->
+  <section class="advisors" id="advisors">
+    <div class="advisors-header">
+      <p class="eyebrow">The Partners</p>
+      <div class="advisors-h2">
+        <span class="advisors-h2-our">Our</span><span class="advisors-h2-script">Advisors</span>
       </div>
-      <div class="philosophy-content">
-        <p class="eyebrow">Our Philosophy</p>
-        <div>
-          <div class="philosophy-h2">Palate.<br>Connections.</div>
-          <span class="philosophy-h2-script">The Room.</span>
-        </div>
-        <div class="divider-rule"></div>
-        <p class="philosophy-body">There are things no algorithm can decode. The handshake that seals a billion-dollar deal. The instinct that tells you when to walk away. The network that opens doors money alone cannot. Our advisors have sat in those rooms. They know what happens after the cameras turn off and the press releases go out. This is the education that matters.</p>
-        <a class="btn-block" data-page="home" data-section="advisors">Apply as an Advisor</a>
-      </div>
-    </section>
-
-    <section id="advise">
-      <div class="advise-header">
-        <p class="eyebrow">Expertise</p>
-        <h2 class="advise-h2">What We Advise On</h2>
-      </div>
-      <div class="advise-grid">
-        <div class="advise-cell">
-          <div class="advise-num">01</div>
-          <h3 class="advise-title">Web3 &amp; Crypto</h3>
-          <p class="advise-body">Token economics, DeFi architecture, regulatory navigation, and the deals that built the industry.</p>
-        </div>
-        <div class="advise-cell">
-          <div class="advise-num">02</div>
-          <h3 class="advise-title">Fund Raising</h3>
-          <p class="advise-body">From seed to Series D. The pitch, the terms, the negotiation, and what VCs actually think.</p>
-        </div>
-        <div class="advise-cell">
-          <div class="advise-num">03</div>
-          <h3 class="advise-title">Entrepreneurship</h3>
-          <p class="advise-body">Building from zero. Product-market fit, hiring, culture, and the decisions that define companies.</p>
-        </div>
-        <div class="advise-cell">
-          <div class="advise-num">04</div>
-          <h3 class="advise-title">Deal Making</h3>
-          <p class="advise-body">M&amp;A, partnerships, and strategic alliances. How the biggest deals in the world actually get done.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="quote-stripe">
-      <div class="quote-stripe-bg">
-        <img src="images/quote-bg.png" alt="" />
-      </div>
-      <div class="quote-stripe-overlay"></div>
-      <div class="quote-inner">
-        <span class="quote-text">"The handshake that seals a billion-dollar deal. The instinct that tells you when to walk away."</span>
-        <span class="quote-attr">— Advising.com Philosophy</span>
-      </div>
-    </section>
-
-    <section class="advisors" id="advisors">
-      <div class="advisors-header">
-        <p class="eyebrow">The Partners</p>
-        <div class="advisors-h2">
-          <span class="advisors-h2-our">Our</span><span class="advisors-h2-script">Advisors</span>
-        </div>
-        <p class="advisors-sub">Decades of combined expertise in strategic advisory, corporate development, and executive decision-making.</p>
-      </div>
-      <div class="advisors-grid">
-        <div class="advisor-card">
-          <div class="advisor-photo">
-            <img src="https://www.figma.com/api/mcp/asset/0ac4035c-63ec-4267-99a9-9df3b116d0ca" alt="Mickey Hardy" />
-          </div>
-          <div class="advisor-info">
-            <div class="advisor-pos">Co-Founder &amp; Chairman, Special Situations Group</div>
-            <div class="advisor-name">Mickey Hardy</div>
-            <div class="advisor-role">The Closer</div>
-            <div class="advisor-divider"></div>
-            <p class="advisor-bio">Mickey Hardy is the Founder and Chairman of Arcadia, the premier Web3 marketing firm behind the explosive growth of category leaders like Worldcoin, Shiba Inu, Aethir, 0G, and more. Arcadia is known for its white-glove influencer campaigns, growth systems engineered for virality, and elite go-to-market execution.</p>
-            <a class="advisor-link" data-page="about">see more &nbsp;&nbsp;→</a>
-          </div>
-        </div>
-        <div class="advisor-card">
-          <div class="advisor-photo">
-            <img src="https://www.figma.com/api/mcp/asset/6972c00e-e5c8-4062-837f-b6a8fd7b2e21" alt="Brian Evans" />
-          </div>
-          <div class="advisor-info">
-            <div class="advisor-pos">Co-Founder &amp; Chairman, International Advisory Council</div>
-            <div class="advisor-name">Brian Evans</div>
-            <div class="advisor-role">The Builder</div>
-            <div class="advisor-divider"></div>
-            <p class="advisor-bio">Brian D. Evans is an Inc. 500 entrepreneur, angel investor and seasoned strategic advisor who has spent his career building at the intersection of emerging technology and digital marketing. He scaled companies across media, eCom, gaming, and tech, earning recognition from Forbes, Entrepreneur, and Inc., along with multiple 40 Under 40 honors.</p>
-            <a class="advisor-link" data-page="about">see more &nbsp;&nbsp;→</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ── Home Blog Preview ── -->
-    <section class="home-blog-preview">
-      <div style="display:flex; align-items:baseline; justify-content:space-between;">
-        <div>
-          <p class="eyebrow">From the Desk</p>
-          <div style="display:flex; align-items:baseline; gap:8px; margin-top:6px;">
-            <span style="font-family:'Libre Baskerville',serif; font-size:clamp(22px,2.6vw,46px); font-weight:700; font-style:italic; letter-spacing:-0.02em; color:var(--dark);">Latest</span>
-            <span style="font-family:'Pinyon Script',cursive; font-size:clamp(28px,3.4vw,60px); color:var(--rust); line-height:1;">Thinking</span>
-          </div>
-        </div>
-        <span data-page="blog" style="font-family:'Jost',sans-serif; font-size:9px; font-weight:500; letter-spacing:2.2px; text-transform:uppercase; color:var(--rust); cursor:pointer; transition:color 0.2s; flex-shrink:0;" onmouseover="this.style.color='var(--dark)'" onmouseout="this.style.color='var(--rust)'">View All Articles &nbsp;→</span>
-      </div>
-      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); height:100%;">
-
-        <article class="blog-card" data-post="1" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/61f27d54-6b04-49ff-b8d3-ed69bf8abc9c" alt="The Room" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.4s;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Leadership · Deal Making</div>
-            <h3 class="blog-card-title">The Room You're Not In Is Where Your Deals Are Being Made</h3>
-            <p class="blog-card-excerpt">Every deal that slipped away, slipped because someone else was already in the room. Here's what that means — and how to change it.</p>
-            <div class="blog-card-meta">
-              <span class="blog-card-author">Mickey Hardy</span>
-              <span class="blog-card-date">Feb 18, 2026</span>
-            </div>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-
-        <article class="blog-card" data-post="2" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/9b960ab5-0c97-460c-a748-8e19a9b9da61" alt="Founders" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.4s;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Fundraising</div>
-            <h3 class="blog-card-title">What VCs Actually Think During Your Pitch (And What To Do About It)</h3>
-            <p class="blog-card-excerpt">After sitting on both sides of the table hundreds of times, Brian breaks down the unspoken calculus that determines a second meeting.</p>
-            <div class="blog-card-meta">
-              <span class="blog-card-author">Brian Evans</span>
-              <span class="blog-card-date">Feb 11, 2026</span>
-            </div>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-
-        <article class="blog-card" data-post="3" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/92aad0ed-5204-4e9c-934d-f314d0e4001b" alt="Web3" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.4s;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Web3 &amp; Crypto</div>
-            <h3 class="blog-card-title">Community Is Capital: The Web3 Principle Wall Street Still Doesn't Get</h3>
-            <p class="blog-card-excerpt">In traditional markets, capital precedes attention. In Web3, the order is reversed — and the founders who understand this win.</p>
-            <div class="blog-card-meta">
-              <span class="blog-card-author">Mickey Hardy</span>
-              <span class="blog-card-date">Jan 29, 2026</span>
-            </div>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-
-      </div>
-    </section>
-
-    <section class="decisions">
-      <div class="decisions-ring decisions-ring-lg"></div>
-      <div class="decisions-ring decisions-ring-sm"></div>
-      <div class="decisions-inner">
-        <p class="eyebrow">Make Your Move</p>
-        <div style="margin-top:10px;">
-          <span class="decisions-h2-main">Where Decisions</span>
-          <span class="decisions-h2-script">Are Made.</span>
-        </div>
-        <p class="decisions-body">You don't need more information. You need someone who's been in the room. Book your call today — no subscriptions, no commitments, just 30 minutes that could change everything.</p>
-        <div class="decisions-btns">
-          <a class="btn-dark" href="mailto:hello@advising.com">Book a Call Now</a>
-          <a class="btn-outline-dark" data-page="home" data-section="advisors">Browse Advisors</a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <div class="footer-top">
-        <div>
-          <div class="footer-brand">Advising.com</div>
-          <div class="footer-tagline">The Advantage Machines Don't Have</div>
-          <p class="footer-desc">A New York based advisory practice rooted in discretion, discipline, and long-term thinking. Building enduring value across generations, not cycles.</p>
-        </div>
-        <div>
-          <div class="footer-col-head">Navigation</div>
-          <ul class="footer-links">
-            <li><a data-page="home">Home</a></li>
-            <li><a data-page="about">About Us</a></li>
-            <li><a data-page="blog">Blog</a></li>
-            <li><a data-page="home" data-section="philosophy">Philosophy</a></li>
-            <li><a data-page="home" data-section="advisors">Become an Advisor</a></li>
-
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-head">Get In Touch</div>
-          <div class="footer-contact">New York, NY</div>
-          <div class="footer-contact"><a href="mailto:hello@advising.com">hello@advising.com</a></div>
-          <div class="footer-contact"><a href="#">LinkedIn</a></div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Advising.com — All Rights Reserved</span><span class="footer-credit"> Made by heart. Designed by <a href="https://www.linkedin.com/in/leart-raka-68b0081a0/" target="_blank" rel="noopener noreferrer">Leart Raka</a></span>
-        <span class="footer-legal"><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
-      </div>
-    </footer>
-
-  </div><!-- /page-home -->
-
-
-  <!-- ══════════════════════════════════════
-       ABOUT PAGE
-  ══════════════════════════════════════ -->
-  <div id="page-about" class="page">
-
-    <section class="about-hero">
-      <img class="about-hero-img" src="https://www.figma.com/api/mcp/asset/9b960ab5-0c97-460c-a748-8e19a9b9da61" alt="The Founders" />
-      <div class="page-hero-content">
-        <div class="page-hero-eyebrow">
-          <span class="page-hero-eyebrow-line"></span>
-          <span class="page-hero-eyebrow-text">New York City · Est. 2024</span>
-        </div>
-        <h1 class="page-hero-h1">The People<br>
-          <span class="page-hero-script">Behind the Room.</span>
-        </h1>
-        <p class="page-hero-sub">Two founders. Decades of deals. One singular conviction — that the right advisor changes everything.</p>
-      </div>
-    </section>
-
-    <div class="intro-band">
-      <div class="intro-band-stat"><div class="intro-band-num">$2B+</div><div class="intro-band-label">In Deals Advised Together</div></div>
-      <div class="intro-band-div"></div>
-      <div class="intro-band-stat"><div class="intro-band-num">25+</div><div class="intro-band-label">Years Combined Experience</div></div>
+      <p class="advisors-sub">Decades of combined expertise in strategic advisory, corporate development, and executive decision-making.</p>
     </div>
-
-    <section class="story">
-      <div class="story-content">
-        <p class="eyebrow">Our Origin</p>
-        <h2 class="story-h2">Built on One<br><span class="story-h2-script">Conviction.</span></h2>
-        <div class="divider-rule"></div>
-        <p class="story-body">Advising.com was founded on a single, unfashionable belief: that in the age of artificial intelligence and algorithmically generated insight, the most valuable thing in the world is still a room full of the right people — and one advisor who has already sat in it.</p>
-        <p class="story-body" style="margin-top:18px;">Mickey Hardy and Brian Evans didn't build Advising.com because the market was ready for it. They built it because the market needed it. Between them, they have navigated the corridors of Web3, the boardrooms of venture capital, the pitch decks of breakout startups, and the quiet handshakes that close nine-figure deals. Their approach is not theoretical. It is earned.</p>
+    <div class="advisors-grid">
+      <div class="advisor-card">
+        <div class="advisor-photo">
+          <img src="https://www.figma.com/api/mcp/asset/0ac4035c-63ec-4267-99a9-9df3b116d0ca" alt="Mickey Hardy" />
+        </div>
+        <div class="advisor-info">
+          <div class="advisor-pos">Co-Founder &amp; Chairman, Special Situations Group</div>
+          <div class="advisor-name">Mickey Hardy</div>
+          <div class="advisor-role">The Closer</div>
+          <p class="advisor-bio">Mickey Hardy is the Founder and Chairman of Arcadia, the premier Web3 marketing firm behind the explosive growth of category leaders like Worldcoin, Shiba Inu, Aethir, 0G, and more. Arcadia is known for its white-glove influencer campaigns, growth systems engineered for virality, and elite go-to-market execution.</p>
+          <a class="advisor-link" href="#">see more &nbsp;&nbsp;→</a>
+        </div>
       </div>
-      <div class="story-img">
-        <img src="https://www.figma.com/api/mcp/asset/61f27d54-6b04-49ff-b8d3-ed69bf8abc9c" alt="Wall Street" />
-      </div>
-    </section>
-
-    <div class="founder-section">
-      <div class="founder-header">
-        <div class="founder-section-eyebrow">The Partners</div>
-        <div class="founder-section-h2">
-          <span class="founder-section-h2-serif">Meet the</span>
-          <span class="founder-section-h2-script">Founders</span>
+      <div class="advisor-card">
+        <div class="advisor-photo">
+          <img src="https://www.figma.com/api/mcp/asset/6972c00e-e5c8-4062-837f-b6a8fd7b2e21" alt="Brian Evans" />
+        </div>
+        <div class="advisor-info">
+          <div class="advisor-pos">Co-Founder &amp; Chairman, International Advisory Council</div>
+          <div class="advisor-name">Brian Evans</div>
+          <div class="advisor-role">The Builder</div>
+          <p class="advisor-bio">Brian D. Evans is an Inc. 500 entrepreneur, angel investor and seasoned strategic advisor who has spent his career building at the intersection of emerging technology and digital marketing. He scaled companies across media, eCom, gaming, and tech, earning recognition from Forbes, Entrepreneur, and Inc., along with multiple 40 Under 40 honors.</p>
+          <a class="advisor-link" href="#">see more &nbsp;&nbsp;→</a>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Mickey Hardy -->
-    <div class="founder-card">
-      <div class="founder-card-photo">
-        <img src="https://www.figma.com/api/mcp/asset/92aad0ed-5204-4e9c-934d-f314d0e4001b" alt="Mickey Hardy" />
-        <div class="founder-card-photo-overlay"></div>
-        <div class="founder-card-photo-badge">
-          <div class="founder-card-photo-name">Mickey Hardy</div>
-          <span class="founder-card-photo-role">The Closer</span>
-        </div>
+  <!-- DECISIONS -->
+  <section class="decisions" id="decisions">
+    <div class="decisions-ring decisions-ring-lg"></div>
+    <div class="decisions-ring decisions-ring-sm"></div>
+    <div class="decisions-inner">
+      <p class="eyebrow">Make Your Move</p>
+      <div style="margin-top: 10px;">
+        <span class="decisions-h2-main">Where Decisions</span>
+        <span class="decisions-h2-script">Are Made.</span>
       </div>
-      <div class="founder-card-body">
-        <div class="founder-pos-tag">Co-Founder &amp; Chairman, Special Situations Group</div>
-        <div class="founder-name-heading">Mickey Hardy</div>
-        <span class="founder-script-title">The Closer</span>
-        <p class="founder-bio-lead">The architect of Web3's most explosive brand moments — and the strategic mind behind the deals that followed them.</p>
-        <p class="founder-bio-body">Mickey Hardy is the Founder and Chairman of Arcadia, the premier Web3 marketing and growth firm behind the explosive rise of category-defining protocols. Under Mickey's leadership, Arcadia engineered the go-to-market strategies for Worldcoin, Shiba Inu, Aethir, 0G Labs, and a growing roster of blue-chip digital asset projects. Arcadia's signature is precision: white-glove influencer campaigns, virality-by-design growth systems, and launch execution that generates market movement from day one.</p>
-        <p class="founder-bio-body">What sets Mickey apart from conventional growth operators is his understanding that community is capital. In Web3, perception precedes valuation — and no one has proven this more consistently at scale. He has built and deployed distribution networks spanning millions of engaged community members across X, Telegram, and Discord, creating flywheel effects that traditional marketing agencies cannot replicate.</p>
-        <p class="founder-bio-body">At Advising.com, Mickey leads the Special Situations Group, advising founders on launch strategy, token economics, influencer partnerships, and the go-to-market mechanics that separate projects that move markets from those that disappear into the noise.</p>
-        <div class="founder-tags">
-          <span class="founder-tag">Web3 Go-to-Market</span>
-          <span class="founder-tag">Token Launch Strategy</span>
-          <span class="founder-tag">Influencer Architecture</span>
-          <span class="founder-tag">Community Building</span>
-          <span class="founder-tag">Growth Systems</span>
-          <span class="founder-tag">DeFi Protocol Marketing</span>
-        </div>
+      <p class="decisions-body">You don't need more information. You need someone who's been in the room. Book your call today — no subscriptions, no commitments, just 30 minutes that could change everything.</p>
+      <div class="decisions-btns">
+        <a class="btn-dark" href="mailto:hello@advising.com">Apply to Work With Us</a>
+        <a class="btn-outline-dark" href="#advisors">Browse Advisors</a>
       </div>
     </div>
+  </section>
 
-    <div class="founder-achievements">
-      <div class="achievement-cell">
-        <div class="achievement-num">Arcadia</div>
-        <div class="achievement-title">Founder &amp; Chairman</div>
-        <p class="achievement-body">Built Arcadia into the premier Web3 marketing firm, representing the most influential protocols in the digital asset space including Worldcoin, Shiba Inu, Aethir, and 0G Labs.</p>
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Advising.com</div>
+        <div class="footer-tagline">The Advantage Machines Don't Have</div>
+        <p class="footer-desc">A New York based advisory practice rooted in discretion, discipline, and long-term thinking. Building enduring value across generations, not cycles.</p>
       </div>
-      <div class="achievement-cell">
-        <div class="achievement-num">10M+</div>
-        <div class="achievement-title">Community Members Reached</div>
-        <p class="achievement-body">Engineered growth networks spanning millions of engaged community members across Web3's most influential platforms, driving measurable token adoption and market movement.</p>
+      <div>
+        <div class="footer-col-head">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="index.html#philosophy">Philosophy</a></li>
+          <li><a href="index.html#advisors">Our Advisors</a></li>
+        </ul>
       </div>
-      <div class="achievement-cell">
-        <div class="achievement-num">Category</div>
-        <div class="achievement-title">Defining Protocol Launches</div>
-        <p class="achievement-body">Designed go-to-market strategies for projects that went from zero to industry leaders — campaigns built not on paid reach alone, but on genuine viral mechanics and cultural resonance.</p>
-      </div>
-      <div class="achievement-cell">
-        <div class="achievement-num">The Room</div>
-        <div class="achievement-title">Web3's Inner Circle</div>
-        <p class="achievement-body">A trusted advisor to founders, funds, and protocol teams navigating the strategic decisions that define whether a project breaks through or fades out.</p>
-      </div>
-    </div>
-
-    <!-- Brian Evans -->
-    <div class="founder-card reverse" style="border-top:1px solid var(--border);">
-      <div class="founder-card-photo">
-        <img src="https://www.figma.com/api/mcp/asset/6972c00e-e5c8-4062-837f-b6a8fd7b2e21" alt="Brian Evans" />
-        <div class="founder-card-photo-overlay"></div>
-        <div class="founder-card-photo-badge">
-          <div class="founder-card-photo-name">Brian Evans</div>
-          <span class="founder-card-photo-role">The Builder</span>
-        </div>
-      </div>
-      <div class="founder-card-body">
-        <div class="founder-pos-tag">Co-Founder &amp; Chairman, International Advisory Council</div>
-        <div class="founder-name-heading">Brian Evans</div>
-        <span class="founder-script-title">The Builder</span>
-        <p class="founder-bio-lead">Inc. 500 entrepreneur. Angel investor. The rare operator who has scaled companies across every wave of the digital economy — and lived to advise others through the next one.</p>
-        <p class="founder-bio-body">Brian D. Evans has built companies across media, eCommerce, gaming, and emerging technology for over two decades. He is a founding figure in digital marketing, having scaled ventures that grew from concept to category leader during the formative years of the internet economy. His approach is systematic and battle-tested: he builds operating systems for growth, not just campaigns.</p>
-        <p class="founder-bio-body">Brian has been recognized by Forbes, Entrepreneur, and Inc. as one of the most influential entrepreneurs in digital business, earning multiple 40 Under 40 designations across different publication verticals. He knows what a pitch deck needs to look like to get a yes from the rooms that matter, because he has sat on both sides of the table more times than he can count.</p>
-        <p class="founder-bio-body">At Advising.com, Brian chairs the International Advisory Council, working directly with founders on fundraising strategy, company architecture, go-to-market systems, and the operational decisions that determine whether a business compounds or stalls.</p>
-        <div class="founder-tags">
-          <span class="founder-tag">Inc. 500 Entrepreneur</span>
-          <span class="founder-tag">Angel Investing</span>
-          <span class="founder-tag">Fundraising Strategy</span>
-          <span class="founder-tag">Digital Marketing</span>
-          <span class="founder-tag">eCommerce Scaling</span>
-          <span class="founder-tag">Startup Architecture</span>
-        </div>
+      <div>
+        <div class="footer-col-head">Get In Touch</div>
+        <div class="footer-contact">New York, NY</div>
+        <div class="footer-contact"><a href="mailto:hello@advising.com">hello@advising.com</a></div>
+        <div class="footer-contact"><a href="#">LinkedIn</a></div>
       </div>
     </div>
-
-    <div class="founder-achievements">
-      <div class="achievement-cell">
-        <div class="achievement-num">Inc. 500</div>
-        <div class="achievement-title">Fastest Growing Companies</div>
-        <p class="achievement-body">Built and scaled multiple Inc. 500-recognized businesses across media, eCommerce, gaming, and technology — demonstrating repeatable growth across diverse sectors and market conditions.</p>
-      </div>
-      <div class="achievement-cell">
-        <div class="achievement-num">40 Under 40</div>
-        <div class="achievement-title">Forbes, Entrepreneur &amp; Inc.</div>
-        <p class="achievement-body">Recognized multiple times across major publications for entrepreneurial impact and innovation — a rare hat-trick reflecting demonstrated business outcomes across multiple cycles.</p>
-      </div>
-      <div class="achievement-cell">
-        <div class="achievement-num">Angel</div>
-        <div class="achievement-title">Strategic Capital Deployment</div>
-        <p class="achievement-body">An active angel investor backing founders at the intersection of emerging technology and digital commerce. Brings not just capital but two decades of operating experience to every investment relationship.</p>
-      </div>
-      <div class="achievement-cell">
-        <div class="achievement-num">20+ Years</div>
-        <div class="achievement-title">Digital Economy Expertise</div>
-        <p class="achievement-body">Has navigated every major digital wave — from Web1 to mobile to social to Web3 — advising founders on how to position for the next shift before the mainstream sees it coming.</p>
-      </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Advising.com — All Rights Reserved</span><span class="footer-credit"> Made by heart. Designed by <a href="https://www.linkedin.com/in/leart-raka-68b0081a0/" target="_blank" rel="noopener noreferrer">Leart Raka</a></span>
+      <span class="footer-legal"><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
     </div>
-
-    <section class="vision">
-      <div class="vision-content">
-        <p class="eyebrow">The Vision</p>
-        <h2 class="vision-h2">One Practice.<br><span class="vision-h2-script">Two Disciplines.</span></h2>
-        <div class="divider-rule"></div>
-        <p class="vision-body">Mickey brings the launch energy, the Web3 network, and the go-to-market precision that makes a project impossible to ignore. Brian brings the operational architecture, the investor relationships, and the pattern recognition that makes a company impossible to stop.</p>
-        <p class="vision-body" style="margin-top:18px;">Together, they represent something rare in the advisory world: two complementary disciplines under one roof, aligned through a shared structure that only pays them when clients succeed.</p>
-      </div>
-      <div class="vision-grid">
-        <div class="vision-cell">
-          <div class="vision-cell-label">Mickey's Mandate</div>
-          <div class="vision-cell-text">Visibility before value accrual. In every market, attention precedes capitalization. Mickey's discipline ensures that when the right moment arrives, the right audience is already watching.</div>
-        </div>
-        <div class="vision-cell">
-          <div class="vision-cell-label">Brian's Mandate</div>
-          <div class="vision-cell-text">Architecture before ambition. Sustainable growth is never accidental — it is designed. Brian's discipline ensures that the infrastructure exists to hold and compound whatever attention Mickey generates.</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-cta">
-      <div class="about-cta-ring about-cta-ring-lg"></div>
-      <div class="about-cta-ring about-cta-ring-sm"></div>
-      <div class="about-cta-inner">
-        <p class="eyebrow">Work With Us</p>
-        <div style="margin-top:10px;">
-          <span class="about-cta-h2">Get In</span>
-          <span class="about-cta-script">The Room.</span>
-        </div>
-        <p class="about-cta-body">You don't need more information. You need someone who has been where you're going. Book a call with Mickey, Brian, or both — and find out what decisions look like when they're made by people who've already made them.</p>
-        <div class="about-cta-btns">
-          <a class="btn-dark" href="mailto:hello@advising.com">Book a Call</a>
-          <a class="btn-outline-dark" data-page="home" data-section="advisors">Browse All Advisors</a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <div class="footer-top">
-        <div>
-          <div class="footer-brand">Advising.com</div>
-          <div class="footer-tagline">The Advantage Machines Don't Have</div>
-          <p class="footer-desc">A New York based advisory practice rooted in discretion, discipline, and long-term thinking. Building enduring value across generations, not cycles.</p>
-        </div>
-        <div>
-          <div class="footer-col-head">Navigation</div>
-          <ul class="footer-links">
-            <li><a data-page="home">Home</a></li>
-            <li><a data-page="about">About Us</a></li>
-            <li><a data-page="blog">Blog</a></li>
-            <li><a data-page="home" data-section="philosophy">Philosophy</a></li>
-            <li><a data-page="home" data-section="advisors">Become an Advisor</a></li>
-
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-head">Get In Touch</div>
-          <div class="footer-contact">New York, NY</div>
-          <div class="footer-contact"><a href="mailto:hello@advising.com">hello@advising.com</a></div>
-          <div class="footer-contact"><a href="#">LinkedIn</a></div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Advising.com — All Rights Reserved</span><span class="footer-credit"> Made by heart. Designed by <a href="https://www.linkedin.com/in/leart-raka-68b0081a0/" target="_blank" rel="noopener noreferrer">Leart Raka</a></span>
-        <span class="footer-legal"><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
-      </div>
-    </footer>
-
-  </div><!-- /page-about -->
-
-
-  <!-- ══════════════════════════════════════
-       BLOG LISTING PAGE
-  ══════════════════════════════════════ -->
-  <div id="page-blog" class="page">
-
-    <section class="blog-hero">
-      <div class="blog-hero-bg">
-        <img src="https://www.figma.com/api/mcp/asset/c87bde3c-0713-4e54-956a-0a4795702ecf" alt="" />
-      </div>
-      <div class="blog-hero-overlay"></div>
-      <div class="blog-hero-ornament"></div>
-      <div class="blog-hero-ornament-sm"></div>
-      <div class="page-hero-content">
-        <div class="page-hero-eyebrow">
-          <span class="page-hero-eyebrow-line"></span>
-          <span class="page-hero-eyebrow-text">Insights &amp; Perspectives</span>
-        </div>
-        <h1 class="contact-hero-h1">Ideas Worth<br>
-          <span class="contact-hero-script">Sitting With.</span>
-        </h1>
-        <p class="contact-hero-sub">Perspectives on markets, decisions, and the thinking that separates operators from observers.</p>
-      </div>
-    </section>
-
-    <section class="blog-grid-section">
-      <div class="blog-grid-header">
-        <p class="eyebrow">All Articles</p>
-      </div>
-
-      <div class="blog-grid">
-
-        <!-- Post 1 -->
-        <article class="blog-card" data-post="1" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/61f27d54-6b04-49ff-b8d3-ed69bf8abc9c" alt="The Room" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.4s;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Leadership · Deal Making</div>
-            <h2 class="blog-card-title">The Room You're Not In Is Where Your Deals Are Being Made</h2>
-            <p class="blog-card-excerpt">Every founder knows the feeling: a deal slipped through, not because of price or product, but because someone else was already in the room. Here's what that means — and how to change it.</p>
-            <div class="blog-card-meta">
-              <span class="blog-card-author">Mickey Hardy</span>
-              <span class="blog-card-date">Feb 18, 2026</span>
-            </div>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-
-        <!-- Post 2 -->
-        <article class="blog-card" data-post="2" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/9b960ab5-0c97-460c-a748-8e19a9b9da61" alt="Founders" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.4s;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Fundraising</div>
-            <h2 class="blog-card-title">What VCs Actually Think During Your Pitch (And What To Do About It)</h2>
-            <p class="blog-card-excerpt">After sitting on both sides of the table hundreds of times, Brian Evans breaks down the unspoken calculus that determines whether your deck gets a second meeting.</p>
-            <div class="blog-card-meta">
-              <span class="blog-card-author">Brian Evans</span>
-              <span class="blog-card-date">Feb 11, 2026</span>
-            </div>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-
-        <!-- Post 3 -->
-        <article class="blog-card" data-post="3" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/92aad0ed-5204-4e9c-934d-f314d0e4001b" alt="Web3" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.4s;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Web3 &amp; Crypto</div>
-            <h2 class="blog-card-title">Community Is Capital: The Web3 Principle That Wall Street Still Doesn't Understand</h2>
-            <p class="blog-card-excerpt">In traditional markets, capital precedes attention. In Web3, the order is reversed — and founders who understand this unlock a competitive advantage that money alone can't replicate.</p>
-            <div class="blog-card-meta">
-              <span class="blog-card-author">Mickey Hardy</span>
-              <span class="blog-card-date">Jan 29, 2026</span>
-            </div>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-
-        <!-- Post 4 -->
-        <article class="blog-card" data-post="4" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/e89a9281-bfef-428d-b986-98a4ae3ea97a" alt="Growth" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.4s;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Growth</div>
-            <h2 class="blog-card-title">The Inc. 500 Playbook: What Scaling Across Three Decades Actually Looks Like</h2>
-            <p class="blog-card-excerpt">Growth isn't a strategy — it's a result. Brian unpacks the operating system behind three decades of scaling companies from zero to category leadership across radically different markets.</p>
-            <div class="blog-card-meta">
-              <span class="blog-card-author">Brian Evans</span>
-              <span class="blog-card-date">Jan 20, 2026</span>
-            </div>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-
-        <!-- Post 5 -->
-        <article class="blog-card" data-post="5" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/26b5bae0-3b39-41f1-8851-eb3b2a346377" alt="Decisions" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.4s;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Leadership</div>
-            <h2 class="blog-card-title">The 7% Conviction: Why Our Fee Structure Is Also Our Philosophy</h2>
-            <p class="blog-card-excerpt">Most advisory firms charge retainers. We charge 7% dilution — and only get paid when you win. This is not just a business model. It's a statement about what aligned incentives actually mean.</p>
-            <div class="blog-card-meta">
-              <span class="blog-card-author">Mickey Hardy &amp; Brian Evans</span>
-              <span class="blog-card-date">Jan 10, 2026</span>
-            </div>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-
-        <!-- Post 6 -->
-        <article class="blog-card" data-post="6" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/61f27d54-6b04-49ff-b8d3-ed69bf8abc9c" alt="Deal Making" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform 0.4s;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Deal Making</div>
-            <h2 class="blog-card-title">How the Biggest Deals Actually Close: What No One Tells First-Time Founders</h2>
-            <p class="blog-card-excerpt">The pitch is the beginning, not the end. The real work — and the real leverage — happens in the weeks between the term sheet and the wire. Here's what that looks like from the inside.</p>
-            <div class="blog-card-meta">
-              <span class="blog-card-author">Brian Evans</span>
-              <span class="blog-card-date">Dec 28, 2025</span>
-            </div>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-
-      </div><!-- /blog-grid -->
-    </section>
-
-    <footer class="site-footer">
-      <div class="footer-top">
-        <div>
-          <div class="footer-brand">Advising.com</div>
-          <div class="footer-tagline">The Advantage Machines Don't Have</div>
-          <p class="footer-desc">A New York based advisory practice rooted in discretion, discipline, and long-term thinking. Building enduring value across generations, not cycles.</p>
-        </div>
-        <div>
-          <div class="footer-col-head">Navigation</div>
-          <ul class="footer-links">
-            <li><a data-page="home">Home</a></li>
-            <li><a data-page="about">About Us</a></li>
-            <li><a data-page="blog">Blog</a></li>
-            <li><a data-page="home" data-section="philosophy">Philosophy</a></li>
-            <li><a data-page="home" data-section="advisors">Become an Advisor</a></li>
-
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-head">Get In Touch</div>
-          <div class="footer-contact">New York, NY</div>
-          <div class="footer-contact"><a href="mailto:hello@advising.com">hello@advising.com</a></div>
-          <div class="footer-contact"><a href="#">LinkedIn</a></div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Advising.com — All Rights Reserved</span><span class="footer-credit"> Made by heart. Designed by <a href="https://www.linkedin.com/in/leart-raka-68b0081a0/" target="_blank" rel="noopener noreferrer">Leart Raka</a></span>
-        <span class="footer-legal"><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
-      </div>
-    </footer>
-
-  </div><!-- /page-blog -->
-
-
-  <!-- ══════════════════════════════════════
-       BLOG DETAIL PAGE
-  ══════════════════════════════════════ -->
-  <div id="page-blog-post" class="page">
-
-    <section class="blog-detail-hero">
-      <img class="blog-detail-hero-img" id="blogPostHeroImg" src="https://www.figma.com/api/mcp/asset/61f27d54-6b04-49ff-b8d3-ed69bf8abc9c" alt="" />
-      <div class="page-hero-content">
-        <div class="page-hero-eyebrow">
-          <span class="page-hero-eyebrow-line"></span>
-          <span class="page-hero-eyebrow-text" id="blogPostCat">Leadership · Deal Making</span>
-        </div>
-        <h1 class="page-hero-h1" id="blogPostTitle">The Room You're Not In Is Where Your Deals Are Being Made</h1>
-      </div>
-    </section>
-
-    <div class="blog-detail-content">
-      <span class="blog-detail-back" data-page="blog">← Back to Blog</span>
-      <div class="blog-detail-cat" id="blogPostCat2">Leadership · Deal Making</div>
-      <h1 class="blog-detail-title" id="blogPostTitle2">The Room You're Not In Is Where Your Deals Are Being Made</h1>
-      <div class="blog-detail-meta">
-        <img class="blog-detail-author-img" id="blogPostAuthorImg" src="https://www.figma.com/api/mcp/asset/92aad0ed-5204-4e9c-934d-f314d0e4001b" alt="" />
-        <div>
-          <div class="blog-detail-author-name" id="blogPostAuthorName">Mickey Hardy</div>
-          <div class="blog-detail-author-role" id="blogPostAuthorRole">Co-Founder &amp; Chairman, Special Situations Group</div>
-        </div>
-        <div class="blog-detail-date" id="blogPostDate">February 18, 2026</div>
-      </div>
-
-      <div class="blog-detail-body" id="blogPostBody">
-        <p>Every founder knows the feeling. You spent months on the pitch. You have the deck, the data, the story. You got into the meeting. And then — nothing. The deal went somewhere else, to someone you've never heard of, for reasons that were never explained.</p>
-
-        <p>The official reason is usually something polite. "We went in a different direction." "The timing wasn't right." "We're pausing our investment activity." But founders who have been in this world long enough know the real reason, and it's simpler than any of those: <em>someone else was already in the room.</em></p>
-
-        <h2>The Invisible Tournament</h2>
-
-        <p>Capital allocation — whether it's venture funding, a strategic partnership, or an M&A conversation — rarely works the way first-time founders imagine. It's not a meritocracy where the best pitch wins. It's a tournament, and the first round happens before you ever show up.</p>
-
-        <p>In every meaningful deal, there's a shortlist. The shortlist isn't built from cold outreach or deck reviews. It's built from relationships, from the conversations that happened at dinner tables and on the sidelines of conferences, from the people who casually mentioned your name to the right person at exactly the right moment.</p>
-
-        <blockquote>"If you're not in the room when the shortlist is made, you're not on the shortlist."</blockquote>
-
-        <p>This isn't gatekeeping for its own sake. It's how trust scales. Capital allocators — whether they're VCs, strategics, or family offices — are making bets on judgment, on character, on the intangibles that can't be captured in a spreadsheet. And the fastest way to establish those intangibles is through the vouching of someone they already trust.</p>
-
-        <h2>What the Room Actually Looks Like</h2>
-
-        <p>People romanticize "the room" as if it's a literal place — a private dining room on Park Avenue, a yacht at Davos, a back table at a conference. Sometimes it is. But more often, the room is a text thread, a group dinner with five people who all know each other, a phone call between two partners at a fund who are catching up on a Sunday afternoon.</p>
-
-        <p>The common thread isn't geography. It's access — and access is a function of relationships built over time, maintained through consistency, and deepened through demonstrated judgment. You don't buy your way in. You earn it, or you find someone who's already there to bring you through the door.</p>
-
-        <h2>How to Change It</h2>
-
-        <p>The founders who crack this do a few things differently. First, they stop treating their network as a resource to extract from and start treating it as a community to invest in. The question shifts from "who can help me right now?" to "who can I help right now, knowing that the return is relational, not transactional?"</p>
-
-        <p>Second, they find an advisor who is already in the rooms that matter — and they structure that relationship correctly. Not a cursory LinkedIn connection, not a one-time coffee, but an actual ongoing relationship where the advisor has skin in the game and a reason to make introductions that go deep rather than wide.</p>
-
-        <p>Third, they become someone worth introducing. This means being known for something specific, being seen as the kind of founder who adds value to the rooms they're in — not just someone looking for something.</p>
-
-        <p>The deals that define companies aren't found through warm outbound sequences or pitch competition wins. They're made by people who have spent years building the credibility and the connections to be in the room when it matters. The good news is that it's not too late to start. The bad news is that it takes longer than most founders want to admit — unless you have someone who can walk you through the door.</p>
-      </div>
-    </div>
-
-    <section class="blog-detail-related">
-      <h2 class="blog-detail-related-title">More From Advising.com</h2>
-      <div class="blog-detail-related-grid">
-        <article class="blog-card" data-post="2" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/9b960ab5-0c97-460c-a748-8e19a9b9da61" alt="Founders" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Fundraising</div>
-            <h2 class="blog-card-title">What VCs Actually Think During Your Pitch</h2>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-        <article class="blog-card" data-post="3" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/92aad0ed-5204-4e9c-934d-f314d0e4001b" alt="Web3" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Web3 &amp; Crypto</div>
-            <h2 class="blog-card-title">Community Is Capital: The Web3 Principle</h2>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-        <article class="blog-card" data-post="5" data-page="blog-post">
-          <div class="blog-card-img-wrap">
-            <img src="https://www.figma.com/api/mcp/asset/26b5bae0-3b39-41f1-8851-eb3b2a346377" alt="Decisions" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;" />
-          </div>
-          <div class="blog-card-body">
-            <div class="blog-card-cat">Leadership</div>
-            <h2 class="blog-card-title">The 7% Conviction: Our Fee Structure Is Our Philosophy</h2>
-            <span class="blog-card-readmore">Read Article &nbsp;→</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <footer class="site-footer">
-      <div class="footer-top">
-        <div>
-          <div class="footer-brand">Advising.com</div>
-          <div class="footer-tagline">The Advantage Machines Don't Have</div>
-          <p class="footer-desc">A New York based advisory practice rooted in discretion, discipline, and long-term thinking. Building enduring value across generations, not cycles.</p>
-        </div>
-        <div>
-          <div class="footer-col-head">Navigation</div>
-          <ul class="footer-links">
-            <li><a data-page="home">Home</a></li>
-            <li><a data-page="about">About Us</a></li>
-            <li><a data-page="blog">Blog</a></li>
-            <li><a data-page="home" data-section="philosophy">Philosophy</a></li>
-            <li><a data-page="home" data-section="advisors">Become an Advisor</a></li>
-
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-head">Get In Touch</div>
-          <div class="footer-contact">New York, NY</div>
-          <div class="footer-contact"><a href="mailto:hello@advising.com">hello@advising.com</a></div>
-          <div class="footer-contact"><a href="#">LinkedIn</a></div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Advising.com — All Rights Reserved</span><span class="footer-credit"> Made by heart. Designed by <a href="https://www.linkedin.com/in/leart-raka-68b0081a0/" target="_blank" rel="noopener noreferrer">Leart Raka</a></span>
-        <span class="footer-legal"><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
-      </div>
-    </footer>
-
-  </div><!-- /page-blog-post -->
-
-
-  <!-- ══════════════════════════════════════
-       ROUTER + INTERACTIONS
-  ══════════════════════════════════════ -->
-  <script>
-    // ── Page Router ──────────────────────────────
-    const pages = { home: 'page-home', about: 'page-about', blog: 'page-blog', 'blog-post': 'page-blog-post' };
-
-    function showPage(name, section) {
-      // hide all
-      Object.values(pages).forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove('active');
-      });
-      // show target
-      const target = document.getElementById(pages[name] || pages.home);
-      if (target) target.classList.add('active');
-      // update nav active states
-      document.querySelectorAll('[data-page]').forEach(a => {
-        a.classList.remove('active');
-        if (a.dataset.page === name && !a.dataset.section) a.classList.add('active');
-      });
-      // scroll to top, then optionally to section
-      window.scrollTo(0, 0);
-      if (section) {
-        setTimeout(() => {
-          const el = document.getElementById(section);
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 80);
-      }
-      // update browser hash
-      history.pushState({ page: name, section }, '', '#' + name);
-      // update title
-      const titles = {
-        home: 'Advising.com — Where Decisions Are Made',
-        about: 'About Us — Advising.com',
-        blog: 'Blog — Advising.com',
-        'blog-post': 'Article — Advising.com'
-      };
-      document.title = titles[name] || titles.home;
-    }
-
-    // ── Blog post data ────────────────────────────
-    const blogPosts = {
-      1: {
-        cat: 'Leadership · Deal Making',
-        title: "The Room You're Not In Is Where Your Deals Are Being Made",
-        author: 'Mickey Hardy',
-        role: 'Co-Founder & Chairman, Special Situations Group',
-        authorImg: 'https://www.figma.com/api/mcp/asset/92aad0ed-5204-4e9c-934d-f314d0e4001b',
-        heroImg: 'https://www.figma.com/api/mcp/asset/61f27d54-6b04-49ff-b8d3-ed69bf8abc9c',
-        date: 'February 18, 2026'
-      },
-      2: {
-        cat: 'Fundraising',
-        title: "What VCs Actually Think During Your Pitch (And What To Do About It)",
-        author: 'Brian Evans',
-        role: 'Co-Founder & Chairman, International Advisory Council',
-        authorImg: 'https://www.figma.com/api/mcp/asset/9b960ab5-0c97-460c-a748-8e19a9b9da61',
-        heroImg: 'https://www.figma.com/api/mcp/asset/9b960ab5-0c97-460c-a748-8e19a9b9da61',
-        date: 'February 11, 2026'
-      },
-      3: {
-        cat: 'Web3 & Crypto',
-        title: "Community Is Capital: The Web3 Principle That Wall Street Still Doesn't Understand",
-        author: 'Mickey Hardy',
-        role: 'Co-Founder & Chairman, Special Situations Group',
-        authorImg: 'https://www.figma.com/api/mcp/asset/92aad0ed-5204-4e9c-934d-f314d0e4001b',
-        heroImg: 'https://www.figma.com/api/mcp/asset/92aad0ed-5204-4e9c-934d-f314d0e4001b',
-        date: 'January 29, 2026'
-      },
-      4: {
-        cat: 'Growth',
-        title: "The Inc. 500 Playbook: What Scaling Across Three Decades Actually Looks Like",
-        author: 'Brian Evans',
-        role: 'Co-Founder & Chairman, International Advisory Council',
-        authorImg: 'https://www.figma.com/api/mcp/asset/9b960ab5-0c97-460c-a748-8e19a9b9da61',
-        heroImg: 'https://www.figma.com/api/mcp/asset/e89a9281-bfef-428d-b986-98a4ae3ea97a',
-        date: 'January 20, 2026'
-      },
-      5: {
-        cat: 'Leadership',
-        title: "The 7% Conviction: Why Our Fee Structure Is Also Our Philosophy",
-        author: 'Mickey Hardy & Brian Evans',
-        role: 'Co-Founders, Advising.com',
-        authorImg: 'https://www.figma.com/api/mcp/asset/92aad0ed-5204-4e9c-934d-f314d0e4001b',
-        heroImg: 'https://www.figma.com/api/mcp/asset/26b5bae0-3b39-41f1-8851-eb3b2a346377',
-        date: 'January 10, 2026'
-      },
-      6: {
-        cat: 'Deal Making',
-        title: "How the Biggest Deals Actually Close: What No One Tells First-Time Founders",
-        author: 'Brian Evans',
-        role: 'Co-Founder & Chairman, International Advisory Council',
-        authorImg: 'https://www.figma.com/api/mcp/asset/9b960ab5-0c97-460c-a748-8e19a9b9da61',
-        heroImg: 'https://www.figma.com/api/mcp/asset/61f27d54-6b04-49ff-b8d3-ed69bf8abc9c',
-        date: 'December 28, 2025'
-      }
-    };
-
-    function loadBlogPost(postId) {
-      const post = blogPosts[postId] || blogPosts[1];
-      document.getElementById('blogPostCat').textContent = post.cat;
-      document.getElementById('blogPostTitle').textContent = post.title;
-      document.getElementById('blogPostCat2').textContent = post.cat;
-      document.getElementById('blogPostTitle2').textContent = post.title;
-      document.getElementById('blogPostAuthorName').textContent = post.author;
-      document.getElementById('blogPostAuthorRole').textContent = post.role;
-      document.getElementById('blogPostDate').textContent = post.date;
-      document.getElementById('blogPostHeroImg').src = post.heroImg;
-      document.getElementById('blogPostAuthorImg').src = post.authorImg;
-      document.title = post.title + ' — Advising.com';
-    }
-
-    // ── Attach click handlers ─────────────────────
-    document.addEventListener('click', function(e) {
-      const el = e.target.closest('[data-page]');
-      if (!el) return;
-      e.preventDefault();
-      if (el.dataset.page === 'blog-post' && el.dataset.post) {
-        loadBlogPost(el.dataset.post);
-      }
-      showPage(el.dataset.page, el.dataset.section || null);
-      // close mobile menu if open
-      document.getElementById('mainNav').classList.remove('nav-mobile-open');
-    });
-
-    // ── Blog filter buttons ───────────────────────
-    document.addEventListener('click', function(e) {
-      const btn = e.target.closest('.blog-filter-btn');
-      if (!btn) return;
-      document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-
-    // ── Hash routing on load / back-forward ───────
-    function routeFromHash() {
-      const hash = location.hash.replace('#', '');
-      if (pages[hash]) showPage(hash);
-      else showPage('home');
-    }
-    window.addEventListener('popstate', routeFromHash);
-    routeFromHash();
-
-    // ── Hamburger ─────────────────────────────────
-    document.getElementById('hamburger').addEventListener('click', function() {
-      document.getElementById('mainNav').classList.toggle('nav-mobile-open');
-    });
-
-    // ── Contact form ──────────────────────────────
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const required = this.querySelectorAll('[required]');
-      let valid = true;
-      required.forEach(f => {
-        f.style.borderColor = f.value.trim() ? '' : '#8c3a1a';
-        if (!f.value.trim()) valid = false;
-      });
-      if (!valid) return;
-      this.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-      document.querySelector('.contact-form-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  </script>
+  </footer>
 
 </body>
 </html>
