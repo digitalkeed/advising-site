@@ -165,34 +165,39 @@
     /* ═══════ PARTNERS ═══════ */
     .partners {
       background: var(--dark);
-      height: 56px;
-      display: flex; align-items: center;
       padding: 0 60px;
-      gap: 32px;
-      border-top: 2px solid var(--dark);
+      height: 96px;
+      display: flex; align-items: center;
+      gap: 40px;
+      border-top: 1px solid rgba(196,176,138,0.08);
       overflow: hidden;
     }
     .partners-label {
       font-family: 'Jost', sans-serif;
-      font-size: 9.3px; font-weight: 400;
+      font-size: 9px; font-weight: 400;
       letter-spacing: 2.6px;
       text-transform: uppercase;
-      color: #c9b98a;
+      color: rgba(201,185,138,0.45);
       white-space: nowrap; flex-shrink: 0;
     }
     .partners-div {
-      width: 1px; height: 20px;
-      background: rgba(255,255,255,0.1);
+      width: 1px; height: 24px;
+      background: rgba(196,176,138,0.15);
       flex-shrink: 0;
     }
     .partners-logos {
-      display: flex; align-items: center; gap: 48px;
+      display: flex; align-items: center;
+      gap: 52px; flex: 1;
     }
     .partners-logos img {
-      width: 120px; height: 24px;
+      height: 28px; width: auto;
+      max-width: 150px;
       object-fit: contain; object-position: center;
-      filter: brightness(0) invert(0.8) sepia(0.3) saturate(0.5) hue-rotate(15deg);
-      opacity: 0.75;
+      filter: brightness(0) invert(1) opacity(0.38);
+      transition: filter 0.35s;
+    }
+    .partners-logos img:hover {
+      filter: brightness(0) invert(0.92) sepia(0.45) saturate(0.6) hue-rotate(8deg) opacity(0.9);
     }
 
     /* ═══════ STATS ═══════ */
@@ -854,8 +859,8 @@
       .hero { grid-template-columns: 1fr; padding-top: 60px; min-height: auto; }
       .hero-left { padding: 56px 28px 52px; order: 2; }
       .hero-right { height: 50vh; min-height: 340px; order: 1; }
-      .partners { padding: 0 28px; }
-      .partners-logos { gap: 28px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .partners { padding: 0 28px; height: auto; min-height: 72px; }
+      .partners-logos { gap: 28px; overflow-x: auto; -webkit-overflow-scrolling: touch; flex-wrap: nowrap; }
       .stats { flex-wrap: wrap; }
       .stat { flex: 1 1 50%; padding: 36px 28px; }
       .stat:nth-child(odd) { border-right: 1px solid var(--border); }
@@ -893,9 +898,9 @@
       .hero-h1-main { font-size: 38px; }
       .hero-h1-script { font-size: 52px; }
       .hero-body { font-size: 15px; }
-      .partners { height: auto; padding: 14px 24px; gap: 16px; flex-wrap: wrap; }
-      .partners-logos { gap: 20px; }
-      .partners-logos img { width: 80px; height: 18px; }
+      .partners { height: auto; padding: 16px 24px; gap: 14px; flex-wrap: wrap; }
+      .partners-logos { gap: 24px; overflow-x: auto; }
+      .partners-logos img { height: 20px; width: auto; max-width: 100px; }
       .stat { flex: 1 1 100%; border-right: none !important; }
       .stat-num { font-size: 36px; }
       .philosophy-img { min-height: 280px; }
@@ -972,11 +977,13 @@
     <span class="partners-label">Our Partners</span>
     <div class="partners-div"></div>
     <div class="partners-logos">
-      <img src="https://www.figma.com/api/mcp/asset/e1830497-caa2-4e35-8e19-850d25824378" alt="Partner" />
-      <img src="https://www.figma.com/api/mcp/asset/f7685be5-86d3-406f-a00a-e8676d2faed1" alt="Partner" />
-      <img src="https://www.figma.com/api/mcp/asset/8eb0c523-21c3-47d4-8f42-b81f9ceea125" alt="Partner" />
-      <img src="https://www.figma.com/api/mcp/asset/495b37f5-5d6e-4510-ba29-3d20ca6f0b60" alt="Partner" />
-      <img src="https://www.figma.com/api/mcp/asset/597bd4c3-7efc-4d64-966d-bdc584c7f6cb" alt="Partner" />
+      <img src="https://logo.clearbit.com/netflix.com" alt="Netflix" />
+      <img src="https://logo.clearbit.com/okx.com" alt="OKX" />
+      <img src="https://logo.clearbit.com/binance.com" alt="Binance" />
+      <img src="https://logo.clearbit.com/visa.com" alt="Visa" />
+      <img src="https://logo.clearbit.com/jpmorgan.com" alt="JP Morgan" />
+      <img src="https://logo.clearbit.com/goldmansachs.com" alt="Goldman Sachs" />
+      <img src="https://logo.clearbit.com/coinbase.com" alt="Coinbase" />
     </div>
   </div>
 
@@ -1113,7 +1120,7 @@
     <div class="blog-grid">
       <article class="blog-card">
         <div class="blog-card-image">
-          <img src="images/blog-right-room.jpg" alt="Modern boardroom" />
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=900&h=506&fit=crop&auto=format&q=80" alt="Modern boardroom" />
         </div>
         <div class="blog-card-body">
           <div class="blog-card-date">February 2026</div>
@@ -1123,7 +1130,7 @@
       </article>
       <article class="blog-card">
         <div class="blog-card-image">
-          <img src="images/blog-web3-gtm.jpg" alt="Web3 and blockchain" />
+          <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=900&h=506&fit=crop&auto=format&q=80" alt="Web3 and blockchain" />
         </div>
         <div class="blog-card-body">
           <div class="blog-card-date">January 2026</div>
@@ -1133,7 +1140,7 @@
       </article>
       <article class="blog-card">
         <div class="blog-card-image">
-          <img src="images/blog-long-term.jpg" alt="Glass skyscraper" />
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&h=506&fit=crop&auto=format&q=80" alt="Glass skyscraper" />
         </div>
         <div class="blog-card-body">
           <div class="blog-card-date">December 2025</div>
@@ -1143,7 +1150,7 @@
       </article>
       <article class="blog-card">
         <div class="blog-card-image">
-          <img src="images/blog-7percent.jpg" alt="Business meeting" />
+          <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&h=506&fit=crop&auto=format&q=80" alt="Business meeting" />
         </div>
         <div class="blog-card-body">
           <div class="blog-card-date">November 2025</div>
